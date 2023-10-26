@@ -4,6 +4,8 @@ public class Carti implements IProdus{
     public String nume;
     public String SKU;
 
+    public String tip;
+
     public void setNume(String nume) {
         this.nume = nume;
     }
@@ -16,18 +18,29 @@ public class Carti implements IProdus{
         this.SKU = SKU;
     }
 
+    @Override
+    public String getTip() {
+        return tip;
+    }
+
+    @Override
+    public void setTip(String tip) {
+        this.tip=tip;
+
+    }
+
     public String getSKU() {
         return SKU;
     }
 
     @Override
     public int adaugareStoc(int nrcitit) {
-        return 0;
+        return stoc+=nrcitit;
     }
 
     @Override
-    public int eliminareStoc(int nricitit) {
-        return 0;
+    public int eliminareStoc(int nrcitit) {
+        return stoc-=nrcitit;
     }
 
     @Override

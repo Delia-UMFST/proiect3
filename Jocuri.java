@@ -1,17 +1,17 @@
 public class Jocuri implements IProdus{
     private static final int TVA=19;
-    int stoc;
-    private String Nume;
+    private int stoc;
+    private String nume;
     private String SKU;
 
-
+    private String tip;
 
     public String getNume() {
-        return Nume;
+        return nume;
     }
 
     public void setNume(String nume) {
-        Nume = nume;
+        this.nume = nume;
     }
 
     public String getSKU() {
@@ -20,6 +20,16 @@ public class Jocuri implements IProdus{
 
     public void setSKU(String SKU) {
         this.SKU = SKU;
+    }
+
+    @Override
+    public String getTip() {
+
+        return tip;
+    }
+
+    @Override
+    public void setTip(String tip) {this.tip=tip;
     }
 
     @Override
