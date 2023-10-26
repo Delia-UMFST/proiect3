@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class Inventar extends JFrame {
     private JPanel gestiuneInventar;
@@ -24,7 +25,7 @@ public class Inventar extends JFrame {
     private JTextField ProdusPretIntrareTF;
     private JTextField ProdusModificareStocTF;
     private JList<IProdus> Produs;
-    private DefaultListModel<IProdus> ProdusListModel = new DefaultListModel<>();
+   /private DefaultListModel<IProdus> ProdusListModel = new DefaultListModel<>();
 
 
 
@@ -40,10 +41,14 @@ public class Inventar extends JFrame {
 
         Produs.setVisible(true);
 
-        ProdusListModel.addElement(new Produs("RyanAir",445,"Madrid",
-                "Berlin", 631.99));
+        for (Produs produs : Arrays.asList(new Produs("Catan", 3, "12346",
+                100, 19), new Produs("Ticket to Ride", 4, "9274",
+                150, 19), new Produs("Prima mea Enciclopedie", 2, "5555",
+                30, 5))) {
+            ProdusListModel.addElement(produs);
+        }
 
-             ProdusAdaugaNou.addActionListener(new ActionListener() {
+        ProdusAdaugaNou.addActionListener(new ActionListener() {
                  @Override
                  public void actionPerformed(ActionEvent e) {
                      String numeP=ProdusNumeTF.getText();
@@ -80,7 +85,7 @@ public class Inventar extends JFrame {
                      }
 
                      if(!numeP.isEmpty() && !SKUP.isEmpty() && validStocP &&validPretintrP) {
-                         ProdusListModel.addElement(new Produs(numeP, validStocP, SKUP, PretIntrP, TVA));
+                         new Produs(numeP, validStocP, SKUP, PretIntrP, TVA);
                      }
 
 
