@@ -75,4 +75,8 @@ public class Joc implements IProdus{
     public int getTVA() {
         return TVA;
     }
+    @Override
+    public String toString(){
+        return  nume+ "\t" + SKU+"\t" + stoc+"\t" + pret.getPretRaft();
+    }
 }
