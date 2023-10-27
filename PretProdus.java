@@ -7,7 +7,7 @@ public class PretProdus {
 
 
     public PretProdus(double pretIntrare, int TVA){
-        pretRaft=pretIntrare*(100/TVA)*MARJA;
+        pretRaft=(pretIntrare+((pretIntrare*TVA)/100))*MARJA;
         this.pretIntrare=pretIntrare;
         this.TVA=TVA;
     }

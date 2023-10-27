@@ -74,4 +74,13 @@ public class Carte implements IProdus{
     public int getTVA(){
         return TVA;
     }
+    @Override
+
+    public String toString(){
+        StringBuilder sb=new StringBuilder();
+        sb.append("<html><pre>");
+        sb.append(String.format("%s \t  %s \t %s \t %s",nume,SKU,stoc,pret.getPretRaft()));
+        sb.append("</pre></html>");
+        return  sb.toString();
+    }
 }
