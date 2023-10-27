@@ -31,6 +31,14 @@ public class ItemComanda {
         }
     }
 
+    public void incrCantitate(){
+        ++cantitate;
+    }
+
+    public void decrCantitate(){
+        --cantitate;
+    }
+
     public double getPretItem() {
         return pretItem;
     }
@@ -41,6 +49,6 @@ public class ItemComanda {
 
     @Override
     public String toString() {
-        return produs.getSKU() + ""+ cantitate + " BUC | " + pretItem+" Lei";
+        return produs.toString() + "\t"+ cantitate + " BUC\t" + pretItem+" Lei";
     }
 }

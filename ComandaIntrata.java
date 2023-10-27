@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 
 public class ComandaIntrata extends Comanda{
+    private static int instanceCounter=0;
     private String client;
 
     public ComandaIntrata(ArrayList<ItemComanda> produse, String client) {
         super(produse);
         this.client=client;
+        idComanda='I'+String.format("%1$06d",instanceCounter);
+        ++instanceCounter;
     }
 
     @Override
@@ -25,5 +28,20 @@ public class ComandaIntrata extends Comanda{
         return info.toString();
     }
 
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
+    }
+
+    public void addItem(ItemComanda item){
+        produse.add(item);
+    }
+
+    public void removeItem(ItemComanda item) {
+        produse.remove(item);
+    }
 
 }

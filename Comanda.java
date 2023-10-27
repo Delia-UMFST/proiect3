@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public abstract class Comanda {
-    protected int instanceCounter=0;
     protected String idComanda;
     protected ArrayList<ItemComanda> produse;
     protected double pretComanda;
@@ -10,7 +9,6 @@ public abstract class Comanda {
         this.produse = produse;
         calculPreturiProduse();
         pretComanda=calculPretComanda();
-        idComanda=String.format("%1$07d",instanceCounter);
     }
 
     public abstract void calculPretItem(ItemComanda item);
@@ -32,5 +30,13 @@ public abstract class Comanda {
 
     public ArrayList<ItemComanda> getProduse() {
         return produse;
+    }
+
+    public String getIdComanda() {
+        return idComanda;
+    }
+
+    public double getPretComanda() {
+        return pretComanda;
     }
 }
