@@ -77,6 +77,10 @@ public class Joc implements IProdus{
     }
     @Override
     public String toString(){
-        return  nume+ "\t" + SKU+"\t" + stoc+"\t" + pret.getPretRaft();
+        StringBuilder sb=new StringBuilder();
+        sb.append("<html><pre>");
+        sb.append(String.format("%s \t  %s \t %s \t %s",nume,SKU,stoc,pret.getPretRaft()));
+        sb.append("</pre></html>");
+        return  sb.toString();
     }
 }

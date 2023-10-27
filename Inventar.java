@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Inventar extends JFrame {
     private JPanel gestiuneInventar;
-    private JList list1;
+    private JList<IProdus> produse;
     private JLabel ProdusNou;
     private JLabel ProdusNume;
     private JLabel ProdusStoc;
@@ -28,10 +28,13 @@ public class Inventar extends JFrame {
     private JTextField DiscountSiScumpireTF;
     private JButton PretCreste;
     private JButton PretDiscount;
-    private JList<IProdus> Produse;
+    //IProdus=interfata
+    //Produse = Jlist, partea vizuala a listei
+    //ProdusListModel= partea functionala, care functioneaza ca un arraylist
+    //private JList<IProdus> produse = new JList<>();
    private DefaultListModel<IProdus> ProdusListModel = new DefaultListModel<>();
 
-
+    //
 
     JFrame Inventar=new JFrame();
 
@@ -43,7 +46,11 @@ public class Inventar extends JFrame {
         setVisible(true);//se afiseaza Inventar
         setSize(500,700);
 
-        Produse.setVisible(true);
+
+        produse.setModel(ProdusListModel);
+        produse.setCellRenderer(new DefaultListCellRenderer());
+        produse.setVisible(true);
+
 
         for (IProdus produs : Arrays.asList(new Joc("Catan", 3, "12346",
                 100.0), new Joc("Ticket to Ride", 4, "9274",
@@ -61,17 +68,28 @@ public class Inventar extends JFrame {
                 boolean validStocP=false;
                 double PretIntrP=0;
                 boolean validPretintrP=false;
-                //tip
+                boolean produsExistent=false;
 
-                try{
-                    stocP=Integer.parseInt(ProdusStocTF.getText());
-                    validStocP=true;
+                for(Object produs: Arrays.asList(ProdusListModel.toArray())){
+                    if(ProdusSKUTF.getText().equals(((IProdus)produs).getSKU())){
+                        JOptionPane.showMessageDialog(Inventar.this, "Produs existent. nu se poate crea unul nou.");
+                        produsExistent=true;
+                    }
                 }
-                catch(NumberFormatException nfe){
-                    JOptionPane.showMessageDialog(Inventar.this,"Introdu un numar intreg");
+                if(!ProdusStocTF.getText().isEmpty()) {
+                    try {
+                        stocP = Integer.parseInt(ProdusStocTF.getText());
+                        validStocP = true;
+                    } catch (NumberFormatException nfe) {
+                        JOptionPane.showMessageDialog(Inventar.this, "Introdu un numar intreg");
+
+                    }
 
                 }
-
+                else
+                {
+                    stocP=1;
+                }
                 try {
                     PretIntrP=Integer.parseInt(ProdusPretIntrareTF.getText());
                     validPretintrP=true;
@@ -81,15 +99,28 @@ public class Inventar extends JFrame {
 
                 }
 
-                if(!numeP.isEmpty() && !SKUP.isEmpty() && validStocP &&validPretintrP) {
+                if(!numeP.isEmpty() && !SKUP.isEmpty() && validStocP &&validPretintrP&&!produsExistent) {
                     if (TipCarte.isSelected()) {
-                        new Carte(numeP, stocP, SKUP, PretIntrP);
+                        ProdusListModel.addElement(new Carte(numeP, stocP, SKUP, PretIntrP));
+
                     }
                     else if (TipJoc.isSelected()) {
-                        new Joc(numeP, stocP, SKUP, PretIntrP);
+                        ProdusListModel.addElement(new Joc(numeP, stocP, SKUP, PretIntrP));
+
                     }
                 }
+                else{
+                    JOptionPane.showMessageDialog(Inventar.this,"Informatia introdusa nu este corecta.");
+                }
+                ProdusNumeTF.setText("");
+                ProdusSKUTF.setText("");
+                ProdusStocTF.setText("");
+                ProdusPretIntrareTF.setText("");
+                TipCarte.setSelected(false);
+                TipJoc.setSelected(false);
+
             }
+
         });
         TipCarte.addActionListener(new ActionListener() {
             @Override
