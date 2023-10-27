@@ -9,10 +9,6 @@ public interface IProdus {
     public void setNume(String nume);
     public String getSKU();
     public void setSKU(String SKU);
-
-    public String getTip();
-    public void setTip(String tip);
-
     public void aplicaDiscount(double discount);
     public double getPretRaft();
     public double getPretIntrare();

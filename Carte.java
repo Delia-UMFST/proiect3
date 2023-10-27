@@ -4,7 +4,7 @@ public class Carte implements IProdus{
     public String nume;
     public String SKU;
     private PretProdus pret;
-    public String tip;
+
 
     public Carte(String nume, int stoc, String SKU, double pretIntrare) {
         this.nume=nume;
@@ -25,15 +25,6 @@ public class Carte implements IProdus{
         this.SKU = SKU;
     }
 
-    @Override
-    public String getTip() {
-        return tip;
-    }
-
-    @Override
-    public void setTip(String tip) {
-        this.tip=tip;
-    }
 
     @Override
     public void aplicaDiscount(double discount) {

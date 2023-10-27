@@ -29,15 +29,6 @@ public class Joc implements IProdus{
         this.SKU = SKU;
     }
 
-    @Override
-    public String getTip() {
-
-        return tip;
-    }
-
-    @Override
-    public void setTip(String tip) {this.tip=tip;
-    }
 
     @Override
     public void aplicaDiscount(double discount) {

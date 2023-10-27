@@ -1,4 +1,3 @@
-import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,12 +14,13 @@ public class Start extends JFrame {
      setLocationRelativeTo(null);
      setVisible(true);
      setSize(300,200);
+     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
      accesComenzi.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-             new Comenzi();
+             new GestiuneComenzi();
              dispose();
 
          }
