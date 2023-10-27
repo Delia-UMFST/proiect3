@@ -1,21 +1,24 @@
-public class Jocuri implements IProdus{
-    private static final int TVA=19;
+public class Carte implements IProdus{
+    private static final int TVA=5;
     private int stoc;
-    private String nume;
-    private String SKU;
+    public String nume;
+    public String SKU;
+    private PretProdus pret;
+    public String tip;
 
-    private String tip;
-
-    public String getNume() {
-        return nume;
+    public Carte(String nume, int stoc, String SKU, double pretIntrare) {
+        this.nume=nume;
+        this.stoc=stoc;
+        this.SKU=SKU;
+        pret=new PretProdus(pretIntrare,TVA);
     }
 
     public void setNume(String nume) {
         this.nume = nume;
     }
 
-    public String getSKU() {
-        return SKU;
+    public String getNume() {
+        return nume;
     }
 
     public void setSKU(String SKU) {
@@ -24,12 +27,16 @@ public class Jocuri implements IProdus{
 
     @Override
     public String getTip() {
-
         return tip;
     }
 
     @Override
-    public void setTip(String tip) {this.tip=tip;
+    public void setTip(String tip) {
+        this.tip=tip;
+    }
+
+    public String getSKU() {
+        return SKU;
     }
 
     @Override
@@ -57,8 +64,8 @@ public class Jocuri implements IProdus{
         return stoc;
     }
 
-    @Override
-    public int getTVA() {
+
+    public int getTVA(){
         return TVA;
     }
 }

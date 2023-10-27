@@ -24,8 +24,8 @@ public class Inventar extends JFrame {
     private JLabel ProdusPretIntrare;
     private JTextField ProdusPretIntrareTF;
     private JTextField ProdusModificareStocTF;
-    private JList<IProdus> Produs;
-   /private DefaultListModel<IProdus> ProdusListModel = new DefaultListModel<>();
+    private JList<IProdus> Produse;
+   private DefaultListModel<IProdus> ProdusListModel = new DefaultListModel<>();
 
 
 
@@ -39,72 +39,67 @@ public class Inventar extends JFrame {
         setVisible(true);//se afiseaza Inventar
         setSize(500,700);
 
-        Produs.setVisible(true);
+        Produse.setVisible(true);
 
-        for (Produs produs : Arrays.asList(new Produs("Catan", 3, "12346",
-                100, 19), new Produs("Ticket to Ride", 4, "9274",
-                150, 19), new Produs("Prima mea Enciclopedie", 2, "5555",
-                30, 5))) {
+        for (IProdus produs : Arrays.asList(new Joc("Catan", 3, "12346",
+                100.0), new Joc("Ticket to Ride", 4, "9274",
+                150.0), new Carte("Prima mea Enciclopedie", 2, "5555",
+                30.0))) {
             ProdusListModel.addElement(produs);
         }
 
         ProdusAdaugaNou.addActionListener(new ActionListener() {
-                 @Override
-                 public void actionPerformed(ActionEvent e) {
-                     String numeP=ProdusNumeTF.getText();
-                     String SKUP=ProdusSKUTF.getText();
-                     int stocP=0;
-                     boolean validStocP=false;
-                     double PretIntrP=0;
-                     boolean validPretintrP=false;
-                     int TVA=0;
-                     //tip
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String numeP=ProdusNumeTF.getText();
+                String SKUP=ProdusSKUTF.getText();
+                int stocP=0;
+                boolean validStocP=false;
+                double PretIntrP=0;
+                boolean validPretintrP=false;
+                //tip
 
-                     try{
-                         stocP=Integer.parseInt(ProdusStocTF.getText());
-                         validStocP=true;
-                     }
-                     catch(NumberFormatException nfe){
-                         JOptionPane.showMessageDialog(Inventar.this,"Introdu un numar intreg");
+                try{
+                    stocP=Integer.parseInt(ProdusStocTF.getText());
+                    validStocP=true;
+                }
+                catch(NumberFormatException nfe){
+                    JOptionPane.showMessageDialog(Inventar.this,"Introdu un numar intreg");
 
-                     }
+                }
 
-                     try {
-                         PretIntrP=Integer.parseInt(ProdusPretIntrareTF.getText());
-                         validPretintrP=true;
-                     }
-                     catch(NumberFormatException nfe){
-                         JOptionPane.showMessageDialog(Inventar.this,"Introdu un numar cu doua zecimale");
+                try {
+                    PretIntrP=Integer.parseInt(ProdusPretIntrareTF.getText());
+                    validPretintrP=true;
+                }
+                catch(NumberFormatException nfe){
+                    JOptionPane.showMessageDialog(Inventar.this,"Introdu un numar cu doua zecimale");
 
-                     }
-                     if (TipCarte.isSelected()) {
-                         TVA=5;
-                     }
-                     if (TipJoc.isSelected()) {
-                         TVA=19;
-                     }
+                }
 
-                     if(!numeP.isEmpty() && !SKUP.isEmpty() && validStocP &&validPretintrP) {
-                         new Produs(numeP, validStocP, SKUP, PretIntrP, TVA);
-                     }
-
-
-                 }
-             });
-             TipCarte.addActionListener(new ActionListener() {
-                 @Override
-                 public void actionPerformed(ActionEvent e) {
+                if(!numeP.isEmpty() && !SKUP.isEmpty() && validStocP &&validPretintrP) {
+                    if (TipCarte.isSelected()) {
+                        new Carte(numeP, stocP, SKUP, PretIntrP);
+                    }
+                    else if (TipJoc.isSelected()) {
+                        new Joc(numeP, stocP, SKUP, PretIntrP);
+                    }
+                }
+            }
+        });
+        TipCarte.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                      TipJoc.setSelected(false);
                  }
-             });
-              TipJoc.addActionListener(new ActionListener() {
-                 @Override
-                 public void actionPerformed(ActionEvent e) {
+        });
+        TipJoc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                      TipCarte.setSelected(false);
                  }
-             });
+        });
 
-
-         }
     }
 }
+

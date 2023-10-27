@@ -1,11 +1,11 @@
-public class PretProduse {
+public class PretProdus {
     private static final double MARJA=1.6;
     private double pretIntrare;
     private int TVA;
     private double pretRaft;
 
 
-    public PretProduse(double pretIntrare,int TVA){
+    public PretProdus(double pretIntrare, int TVA){
         pretRaft=pretIntrare*(100/TVA)*MARJA;
         this.pretIntrare=pretIntrare;
         this.TVA=TVA;

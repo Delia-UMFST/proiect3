@@ -1,17 +1,28 @@
-public class Carti implements IProdus{
-    private static final int TVA=5;
+public class Joc implements IProdus{
+    private static final int TVA=19;
     private int stoc;
-    public String nume;
-    public String SKU;
+    private String nume;
+    private String SKU;
+    private PretProdus pret;
+    private String tip;
 
-    public String tip;
+    public Joc(String nume, int stoc, String SKU, double pretIntrare) {
+        this.nume=nume;
+        this.stoc=stoc;
+        this.SKU=SKU;
+        pret=new PretProdus(pretIntrare,TVA);
+    }
+
+    public String getNume() {
+        return nume;
+    }
 
     public void setNume(String nume) {
         this.nume = nume;
     }
 
-    public String getNume() {
-        return nume;
+    public String getSKU() {
+        return SKU;
     }
 
     public void setSKU(String SKU) {
@@ -20,17 +31,12 @@ public class Carti implements IProdus{
 
     @Override
     public String getTip() {
+
         return tip;
     }
 
     @Override
-    public void setTip(String tip) {
-        this.tip=tip;
-
-    }
-
-    public String getSKU() {
-        return SKU;
+    public void setTip(String tip) {this.tip=tip;
     }
 
     @Override
@@ -58,8 +64,8 @@ public class Carti implements IProdus{
         return stoc;
     }
 
-
-    public int getTVA(){
+    @Override
+    public int getTVA() {
         return TVA;
     }
 }
