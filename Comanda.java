@@ -39,4 +39,12 @@ public abstract class Comanda {
     public double getPretComanda() {
         return pretComanda;
     }
+
+    public void addItem(ItemComanda item){
+        produse.add(item);
+    }
+
+    public void removeItem(ItemComanda item) {
+        produse.remove(item);
+    }
 }
