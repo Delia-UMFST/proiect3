@@ -35,6 +35,21 @@ public class Carte implements IProdus{
         this.tip=tip;
     }
 
+    @Override
+    public void aplicaDiscount(double discount) {
+
+    }
+
+    @Override
+    public double getPretRaft() {
+        return pret.getPretRaft();
+    }
+
+    @Override
+    public double getPretIntrare() {
+        return pret.getPretIntrare();
+    }
+
     public String getSKU() {
         return SKU;
     }

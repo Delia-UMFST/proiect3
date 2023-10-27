@@ -40,6 +40,22 @@ public class Joc implements IProdus{
     }
 
     @Override
+    public void aplicaDiscount(double discount) {
+
+         //pret.pretRaft- (pret.getPretRaft() / 100 * discount);
+    }
+
+    @Override
+    public double getPretRaft() {
+        return pret.getPretRaft();
+    }
+
+    @Override
+    public double getPretIntrare() {
+        return pret.getPretIntrare();
+    }
+
+    @Override
     public int adaugareStoc(int nrcitit) {
         return stoc+=nrcitit;
     }

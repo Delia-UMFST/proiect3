@@ -2,7 +2,8 @@ public class PretProdus {
     private static final double MARJA=1.6;
     private double pretIntrare;
     private int TVA;
-    private double pretRaft;
+    public double pretRaft;
+
 
 
     public PretProdus(double pretIntrare, int TVA){

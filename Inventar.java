@@ -24,6 +24,10 @@ public class Inventar extends JFrame {
     private JLabel ProdusPretIntrare;
     private JTextField ProdusPretIntrareTF;
     private JTextField ProdusModificareStocTF;
+    private JLabel DiscountSiScumpire;
+    private JTextField DiscountSiScumpireTF;
+    private JButton PretCreste;
+    private JButton PretDiscount;
     private JList<IProdus> Produse;
    private DefaultListModel<IProdus> ProdusListModel = new DefaultListModel<>();
 
@@ -100,6 +104,30 @@ public class Inventar extends JFrame {
                  }
         });
 
+        PretCreste.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        PretDiscount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        StocEliminaButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        StocAdaugaButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 }
 

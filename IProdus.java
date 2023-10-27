@@ -12,4 +12,8 @@ public interface IProdus {
 
     public String getTip();
     public void setTip(String tip);
+
+    public void aplicaDiscount(double discount);
+    public double getPretRaft();
+    public double getPretIntrare();
 }
