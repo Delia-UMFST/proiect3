@@ -30,7 +30,19 @@ public class Carte implements IProdus {
 
     @Override
     public void aplicaDiscount(double discount) {
+        double pretCuDiscount;
+        pretCuDiscount=pret.getPretRaft();
+        pretCuDiscount=pretCuDiscount-(pretCuDiscount/100)*discount;
+        pret.setPretRaft(pretCuDiscount);
 
+    }
+
+    @Override
+    public void crestePret(double crestePretCuProcent) {
+        double pretCuAdaos;
+        pretCuAdaos=pret.getPretRaft();
+        pretCuAdaos=pretCuAdaos+(pretCuAdaos/100)*crestePretCuProcent;
+        pret.setPretRaft(pretCuAdaos);
     }
 
     @Override
@@ -81,7 +93,8 @@ public class Carte implements IProdus {
     public String toString(){
         StringBuilder sb=new StringBuilder();
         sb.append("<html><pre>");
-        sb.append(String.format("%s \t  %s \t %s \t %s",nume,SKU,stoc,pret.getPretRaft()));
+        sb.append(String.format("%s \t  %s \t %s \t %.2f",nume,SKU,stoc,pret.getPretRaft()));
+        sb.append("Lei");
         sb.append("</pre></html>");
         return  sb.toString();
     }

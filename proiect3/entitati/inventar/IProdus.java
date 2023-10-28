@@ -12,6 +12,7 @@ public interface IProdus {
     public String getSKU();
     public void setSKU(String SKU);
     public void aplicaDiscount(double discount);
+    public void crestePret(double crestePretCuProcent);
     public double getPretRaft();
     public double getPretIntrare();
 }

@@ -34,6 +34,11 @@ public class Inventar extends JFrame {
     private JTextField DiscountSiScumpireTF;
     private JButton PretCreste;
     private JButton PretDiscount;
+    private JLabel SKUPret;
+    private JTextField SKUPretTF;
+    private JLabel SKUStoc;
+    private JTextField SKUStocTF;
+    private JList list1;
     //IProdus=interfata
     //Produse = Jlist, partea vizuala a listei
     //ProdusListModel= partea functionala, care functioneaza ca un arraylist
@@ -46,16 +51,18 @@ public class Inventar extends JFrame {
 
     public Inventar() {
         setContentPane(gestiuneInventar);
-        setLocationRelativeTo(null);
         setTitle("Inventar");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);//se afiseaza Inventar
-        setSize(500,700);
+        setSize(700,700);
+        setLocationRelativeTo(null);
+
 
 
         produse.setModel(ProdusListModel);
         produse.setCellRenderer(new DefaultListCellRenderer());
         produse.setVisible(true);
+
 
 
         for (IProdus produs : Arrays.asList(new Joc("Catan", 3, "12346",
@@ -78,7 +85,8 @@ public class Inventar extends JFrame {
 
                 for(Object produs: Arrays.asList(ProdusListModel.toArray())){
                     if(ProdusSKUTF.getText().equals(((IProdus)produs).getSKU())){
-                        JOptionPane.showMessageDialog(Inventar.this, "Produs existent. nu se poate crea unul nou.");
+                        JOptionPane.showMessageDialog(Inventar.this,
+                                "Produs existent. nu se poate crea unul nou.");
                         produsExistent=true;
                     }
                 }
@@ -101,7 +109,8 @@ public class Inventar extends JFrame {
                     validPretintrP=true;
                 }
                 catch(NumberFormatException nfe){
-                    JOptionPane.showMessageDialog(Inventar.this,"Introdu un numar cu doua zecimale");
+                    JOptionPane.showMessageDialog(Inventar.this,
+                            "Introdu un numar cu doua zecimale");
 
                 }
 
@@ -116,7 +125,8 @@ public class Inventar extends JFrame {
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(Inventar.this,"Informatia introdusa nu este corecta.");
+                    JOptionPane.showMessageDialog(Inventar.this,
+                            "Informatia introdusa nu este corecta.");
                 }
                 ProdusNumeTF.setText("");
                 ProdusSKUTF.setText("");
@@ -142,26 +152,127 @@ public class Inventar extends JFrame {
         });
 
         PretCreste.addActionListener(new ActionListener() {
+            boolean produsExistent=false;
             @Override
             public void actionPerformed(ActionEvent e) {
+                for(Object produs: Arrays.asList(ProdusListModel.toArray())) {
+                    if (SKUPretTF.getText().equals(((IProdus) produs).getSKU())) {
+                        produsExistent = true;
+                        if (DiscountSiScumpireTF.getText() != null) {
+                            ((IProdus) produs).crestePret(Double.parseDouble(DiscountSiScumpireTF.getText()));
+                            JOptionPane.showMessageDialog(Inventar.this,
+                                    "Pretul produsului a fost modificat.");
+                        }
+                        if (DiscountSiScumpireTF.getText() == null) {
+                            JOptionPane.showMessageDialog(Inventar.this,
+                                    "Setati procentul cu care doriti sa cresteti/scadeti pretul");
+                        }
+
+                    }
+                }
+                if(produsExistent==false) {
+                    JOptionPane.showMessageDialog(Inventar.this,
+                            "Produs inexistent. Creeaza produsul.");
+                }
+
 
             }
+
         });
         PretDiscount.addActionListener(new ActionListener() {
+            boolean produsExistent=false;
+
+
             @Override
             public void actionPerformed(ActionEvent e) {
+                for(Object produs: Arrays.asList(ProdusListModel.toArray())) {
+                    if (SKUPretTF.getText().equals(((IProdus) produs).getSKU())) {
+                        produsExistent = true;
+                        if (DiscountSiScumpireTF.getText() != null) {
+                            ((IProdus) produs).aplicaDiscount(Double.parseDouble(DiscountSiScumpireTF.getText()));
+                            JOptionPane.showMessageDialog(Inventar.this,
+                                    "Pretul produsului a fost modificat.");
+                        }
+                        if (DiscountSiScumpireTF.getText() == null) {
+                            JOptionPane.showMessageDialog(Inventar.this,
+                                    "Setati procentul cu care doriti sa cresteti/scadeti pretul");
+                        }
+
+                    }
+                }
+                if(produsExistent==false) {
+                    JOptionPane.showMessageDialog(Inventar.this,
+                            "Produs inexistent. Creeaza produsul.");
+                }
+
 
             }
         });
         StocEliminaButon.addActionListener(new ActionListener() {
+            boolean produsExistent=false;
+
             @Override
             public void actionPerformed(ActionEvent e) {
+                for(Object produs: Arrays.asList(ProdusListModel.toArray())) {
+                    if (SKUStocTF.getText().equals(((IProdus) produs).getSKU())) {
+                        produsExistent = true;
+                        if (SKUStocTF.getText() != null) {
+                            if(ProdusModificareStocTF.getText()!=null){
+                            ((IProdus) produs).eliminareStoc(Integer.parseInt(ProdusModificareStocTF.getText()));
+                            JOptionPane.showMessageDialog(Inventar.this,
+                                    "Stocul produsului a fost modificat.");}
+                            if(ProdusModificareStocTF.getText()==null){
+                                ((IProdus) produs).eliminareStoc();
+                                JOptionPane.showMessageDialog(Inventar.this,
+                                        "Stocul produsului a fost modificat.");}
+                        }
+                        if (SKUStocTF.getText() == null) {
+                            JOptionPane.showMessageDialog(Inventar.this,
+                                    "Introduceti un SKU pentru a identifica produsul");
+                        }
+
+                    }
+                }
+                if(produsExistent==false) {
+                    JOptionPane.showMessageDialog(Inventar.this,
+                            "Produs inexistent. Creeaza produsul.");
+                }
+
 
             }
         });
         StocAdaugaButon.addActionListener(new ActionListener() {
+            boolean produsExistent=false;
+
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                for(Object produs: Arrays.asList(ProdusListModel.toArray())) {
+                    if (SKUStocTF.getText().equals(((IProdus) produs).getSKU())) {
+                        produsExistent = true;
+                        if (SKUStocTF.getText() != null) {
+                            if(ProdusModificareStocTF.getText()!=null){
+                                ((IProdus) produs).adaugareStoc(Integer.parseInt(ProdusModificareStocTF.getText()));
+                                JOptionPane.showMessageDialog(Inventar.this,
+                                        "Stocul produsului a fost modificat.");}
+                            if(ProdusModificareStocTF.getText()==null){
+                                ((IProdus) produs).adaugareStoc();
+                                JOptionPane.showMessageDialog(Inventar.this,
+                                        "Stocul produsului a fost modificat.");}
+                        }
+                        if (SKUStocTF.getText() == null) {
+                            JOptionPane.showMessageDialog(Inventar.this,
+                                    "Introduceti un SKU pentru a identifica produsul");
+                        }
+
+                    }
+                }
+                if(produsExistent==false) {
+                    JOptionPane.showMessageDialog(Inventar.this,
+                            "Produs inexistent. Creeaza produsul.");
+                }
+
+
 
             }
         });

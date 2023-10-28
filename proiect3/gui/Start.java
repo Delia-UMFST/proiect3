@@ -13,9 +13,11 @@ public class Start extends JFrame {
 
  public Start (){
      setContentPane(AccesGestiune);
-     setLocationRelativeTo(null);
+
      setVisible(true);
      setSize(300,200);
+     setLocationRelativeTo(null);
+
      setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 

@@ -1,11 +1,14 @@
 package proiect3.entitati.inventar;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class PretProdus {
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
     private static final double MARJA=1.6;
     private double pretIntrare;
     private int TVA;
     public double pretRaft;
-
 
 
     public PretProdus(double pretIntrare, int TVA){
@@ -26,7 +29,8 @@ public class PretProdus {
         return pretRaft;
     }
 
-    public void setPretRaft(double pretRaft) {
+    public void setPretRaft(double pretRaft)
+    {
         this.pretRaft = pretRaft;
     }
 

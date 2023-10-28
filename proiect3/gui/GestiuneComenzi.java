@@ -44,13 +44,15 @@ public class GestiuneComenzi extends JFrame{
 
 
         setContentPane(gestiuneComenziPanel);
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
 
 
         setVisible(true);//se afiseaza gestiuneComenzi
         setTitle("gestiuneComenzi");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800,600);
+        setLocationRelativeTo(null);
+
 
         DepozitUtils.initComIntrate(comIntrate);
         comIntrList.setModel(comIntrate);
