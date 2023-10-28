@@ -36,8 +36,8 @@ public class Inventar extends JFrame {
     private JButton PretDiscount;
     private JLabel SKUPret;
     private JTextField SKUPretTF;
-    private JLabel SKUStoc;
     private JTextField SKUStocTF;
+    private JLabel SKUStoc;
     private JList list1;
     //IProdus=interfata
     //Produse = Jlist, partea vizuala a listei
@@ -175,6 +175,8 @@ public class Inventar extends JFrame {
                             "Produs inexistent. Creeaza produsul.");
                 }
 
+                SKUPretTF.setText("");
+                DiscountSiScumpireTF.setText("");
 
             }
 
@@ -204,7 +206,8 @@ public class Inventar extends JFrame {
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Produs inexistent. Creeaza produsul.");
                 }
-
+                DiscountSiScumpireTF.setText("");
+                SKUPretTF.setText("");
 
             }
         });
@@ -237,8 +240,8 @@ public class Inventar extends JFrame {
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Produs inexistent. Creeaza produsul.");
                 }
-
-
+                SKUStocTF.setText("");
+                ProdusModificareStocTF.setText("");
             }
         });
         StocAdaugaButon.addActionListener(new ActionListener() {
@@ -273,7 +276,8 @@ public class Inventar extends JFrame {
                 }
 
 
-
+                SKUStocTF.setText("");
+                ProdusModificareStocTF.setText("");
             }
         });
     }
