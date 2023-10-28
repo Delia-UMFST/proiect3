@@ -1,5 +1,6 @@
-package proiect3.entitati;
+package proiect3.entitati.gestiune;
 
+import proiect3.entitati.inventar.IProdus;
 import proiect3.exceptii.ProdusDuplicatException;
 import proiect3.exceptii.ProdusInexistentException;
 

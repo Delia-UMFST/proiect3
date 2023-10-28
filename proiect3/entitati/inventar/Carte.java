@@ -1,4 +1,4 @@
-package proiect3.entitati;
+package proiect3.entitati.inventar;
 
 public class Carte implements IProdus {
     private static final int TVA=5;

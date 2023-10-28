@@ -1,4 +1,4 @@
-package proiect3.entitati;
+package proiect3.entitati.inventar;
 
 public class PretProdus {
     private static final double MARJA=1.6;

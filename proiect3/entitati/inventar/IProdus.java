@@ -1,4 +1,4 @@
-package proiect3.entitati;
+package proiect3.entitati.inventar;
 
 public interface IProdus {
     public int adaugareStoc(int nrcitit);

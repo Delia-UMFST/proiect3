@@ -16,7 +16,7 @@
         </constraints>
         <properties>
           <model>
-            <item value="Catan 2 123 proiect3.entitati.Joc"/>
+            <item value="Catan 2 123 proiect3.entitati.inventar.Joc"/>
           </model>
         </properties>
       </component>

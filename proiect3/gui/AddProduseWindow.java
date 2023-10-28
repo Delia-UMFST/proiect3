@@ -1,9 +1,9 @@
 package proiect3.gui;
 
 import proiect3.DepozitUtils;
-import proiect3.entitati.Comanda;
-import proiect3.entitati.IProdus;
-import proiect3.entitati.ItemComanda;
+import proiect3.entitati.gestiune.Comanda;
+import proiect3.entitati.inventar.IProdus;
+import proiect3.entitati.gestiune.ItemComanda;
 import proiect3.exceptii.ProdusDuplicatException;
 
 import javax.swing.*;

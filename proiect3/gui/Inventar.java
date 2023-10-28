@@ -1,6 +1,8 @@
 package proiect3.gui;
 
-import proiect3.entitati.*;
+import proiect3.entitati.inventar.Carte;
+import proiect3.entitati.inventar.IProdus;
+import proiect3.entitati.inventar.Joc;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

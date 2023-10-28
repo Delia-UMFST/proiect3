@@ -1,6 +1,7 @@
-package proiect3.entitati;
+package proiect3.entitati.gestiune;
 
 import proiect3.DepozitUtils;
+import proiect3.entitati.inventar.IProdus;
 
 public class ItemComanda {
     private IProdus produs;

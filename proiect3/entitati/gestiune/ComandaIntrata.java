@@ -1,4 +1,4 @@
-package proiect3.entitati;
+package proiect3.entitati.gestiune;
 
 import java.util.ArrayList;
 

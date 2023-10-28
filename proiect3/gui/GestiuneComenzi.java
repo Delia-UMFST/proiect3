@@ -1,8 +1,8 @@
 package proiect3.gui;
 
 import proiect3.DepozitUtils;
-import proiect3.entitati.ComandaIesita;
-import proiect3.entitati.ComandaIntrata;
+import proiect3.entitati.gestiune.ComandaIesita;
+import proiect3.entitati.gestiune.ComandaIntrata;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
