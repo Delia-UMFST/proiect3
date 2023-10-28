@@ -1,12 +1,18 @@
+package proiect3.entitati;
+
 import java.util.ArrayList;
 
-public class ComandaIntrata extends Comanda{
+public class ComandaIntrata extends Comanda {
     private static int comenziInCounter=0;
     private String client;
 
     public ComandaIntrata(ArrayList<ItemComanda> produse, String client) {
         super(produse);
         this.client=client;
+        idComanda='I'+String.format("%1$06d", comenziInCounter);
+        ++comenziInCounter;
+    }
+    public ComandaIntrata(){
         idComanda='I'+String.format("%1$06d", comenziInCounter);
         ++comenziInCounter;
     }
@@ -25,6 +31,7 @@ public class ComandaIntrata extends Comanda{
         }
         info.append("Total: ");
         info.append(pretComanda);
+        info.append("Lei");
         return info.toString();
     }
 
@@ -38,5 +45,14 @@ public class ComandaIntrata extends Comanda{
 
     public static int getComenziInCounter() {
         return comenziInCounter;
+    }
+    @Override
+    public String toString(){
+        StringBuilder sb=new StringBuilder();
+        sb.append("<html><pre>");
+        sb.append(String.format("%s \t  %s \t %.2f",idComanda,client,pretComanda));
+        sb.append("Lei");
+        sb.append("</pre></html>");
+        return  sb.toString();
     }
 }

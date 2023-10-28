@@ -1,24 +1,30 @@
-public class Carte implements IProdus{
-    private static final int TVA=5;
+package proiect3.entitati;
+
+public class Joc implements IProdus {
+    private static final int TVA=19;
     private int stoc;
-    public String nume;
-    public String SKU;
+    private String nume;
+    private String SKU;
     private PretProdus pret;
+    private String tip;
 
-
-    public Carte(String nume, int stoc, String SKU, double pretIntrare) {
+    public Joc(String nume, int stoc, String SKU, double pretIntrare) {
         this.nume=nume;
         this.stoc=stoc;
         this.SKU=SKU;
         pret=new PretProdus(pretIntrare,TVA);
     }
 
+    public String getNume() {
+        return nume;
+    }
+
     public void setNume(String nume) {
         this.nume = nume;
     }
 
-    public String getNume() {
-        return nume;
+    public String getSKU() {
+        return SKU;
     }
 
     public void setSKU(String SKU) {
@@ -29,6 +35,7 @@ public class Carte implements IProdus{
     @Override
     public void aplicaDiscount(double discount) {
 
+         //pret.pretRaft- (pret.getPretRaft() / 100 * discount);
     }
 
     @Override
@@ -39,10 +46,6 @@ public class Carte implements IProdus{
     @Override
     public double getPretIntrare() {
         return pret.getPretIntrare();
-    }
-
-    public String getSKU() {
-        return SKU;
     }
 
     @Override
@@ -70,12 +73,11 @@ public class Carte implements IProdus{
         return stoc;
     }
 
-
-    public int getTVA(){
+    @Override
+    public int getTVA() {
         return TVA;
     }
     @Override
-
     public String toString(){
         StringBuilder sb=new StringBuilder();
         sb.append("<html><pre>");

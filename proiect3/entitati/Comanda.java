@@ -1,3 +1,8 @@
+package proiect3.entitati;
+
+import proiect3.exceptii.ProdusDuplicatException;
+import proiect3.exceptii.ProdusInexistentException;
+
 import java.util.ArrayList;
 
 public abstract class Comanda {
@@ -9,6 +14,9 @@ public abstract class Comanda {
         this.produse = produse;
         calculPreturiProduse();
         pretComanda=calculPretComanda();
+    }
+    public Comanda(){
+
     }
 
     public abstract void calculPretItem(ItemComanda item);
@@ -41,10 +49,28 @@ public abstract class Comanda {
     }
 
     public void addItem(ItemComanda item){
+        if(existaProdus(item.getProdus())){
+            throw new ProdusDuplicatException("Produsul SKU:"+item.getProdus().getSKU()+
+                    " exista deja in comanda "+idComanda);
+        }
         produse.add(item);
+        calculPretItem(item);
     }
 
     public void removeItem(ItemComanda item) {
+        if(!existaProdus(item.getProdus())){
+            throw new ProdusInexistentException("Produsul SKU:"+item.getProdus().getSKU()+
+                    " exista deja in comanda "+idComanda);
+        }
         produse.remove(item);
+    }
+
+    public boolean existaProdus(IProdus produs){
+        for(ItemComanda item: produse){
+            if(item.getProdus()==produs){
+                return true;
+            }
+        }
+        return false;
     }
 }

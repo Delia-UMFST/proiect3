@@ -1,3 +1,7 @@
+package proiect3.gui;
+
+import proiect3.entitati.*;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -91,7 +95,7 @@ public class Inventar extends JFrame {
                     stocP=1;
                 }
                 try {
-                    PretIntrP=Integer.parseInt(ProdusPretIntrareTF.getText());
+                    PretIntrP=Double.parseDouble(ProdusPretIntrareTF.getText());
                     validPretintrP=true;
                 }
                 catch(NumberFormatException nfe){

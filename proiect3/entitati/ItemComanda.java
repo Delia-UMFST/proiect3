@@ -1,3 +1,7 @@
+package proiect3.entitati;
+
+import proiect3.DepozitUtils;
+
 public class ItemComanda {
     private IProdus produs;
     private int cantitate;
@@ -49,6 +53,18 @@ public class ItemComanda {
 
     @Override
     public String toString() {
-        return produs.toString() + "\t"+ cantitate + " BUC\t" + pretItem+" Lei";
+        StringBuilder sb=new StringBuilder();
+        sb.append("<html><pre>");
+        StringBuilder nume = new StringBuilder(produs.getNume());
+        if (nume.length() > DepozitUtils.STRING_LENGTH)
+        {
+            nume.setLength(DepozitUtils.STRING_LENGTH-3);
+            nume.append("...");
+        }
+        sb.append(String.format("%-6.6s  %-15.15s  %6s  %.2f",produs.getSKU(),nume.toString(),
+                (cantitate+" BUC"),pretItem));
+        sb.append("Lei");
+        sb.append("</pre></html>");
+        return  sb.toString();
     }
 }

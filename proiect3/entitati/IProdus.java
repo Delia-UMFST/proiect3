@@ -1,3 +1,5 @@
+package proiect3.entitati;
+
 public interface IProdus {
     public int adaugareStoc(int nrcitit);
     public int eliminareStoc(int nrcitit);

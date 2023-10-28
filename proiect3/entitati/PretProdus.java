@@ -1,3 +1,5 @@
+package proiect3.entitati;
+
 public class PretProdus {
     private static final double MARJA=1.6;
     private double pretIntrare;
