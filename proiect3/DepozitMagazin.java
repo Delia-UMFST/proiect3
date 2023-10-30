@@ -1,5 +1,6 @@
 package proiect3;
 
+import proiect3.entitati.gestiune.Comanda;
 import proiect3.entitati.inventar.Carte;
 import proiect3.entitati.inventar.IProdus;
 import proiect3.entitati.inventar.Joc;
@@ -21,13 +22,15 @@ public class DepozitMagazin extends JFrame {
             Arrays.asList(demoProd1, demoProd2, demoProd3, demoProd4, demoProd5)
     );
 
+    private static final ArrayList<Comanda> comenzi = new ArrayList<>();
+
     public static ArrayList<IProdus> getProduse(){
         return produse;
     }
 
     public DepozitMagazin() {
 
-        new Start(produse);
+        new Start(produse, comenzi);
 
 
     }

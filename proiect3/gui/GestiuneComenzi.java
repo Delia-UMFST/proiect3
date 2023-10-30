@@ -1,6 +1,7 @@
 package proiect3.gui;
 
 import proiect3.DepozitUtils;
+import proiect3.entitati.gestiune.Comanda;
 import proiect3.entitati.gestiune.ComandaIesita;
 import proiect3.entitati.gestiune.ComandaIntrata;
 import proiect3.entitati.inventar.IProdus;
@@ -11,6 +12,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GestiuneComenzi extends JFrame{
 
@@ -44,7 +46,7 @@ public class GestiuneComenzi extends JFrame{
     private JPanel backBtnPanel;
     private DefaultListModel<ComandaIesita> comIesite = new DefaultListModel<>();
 
-    public GestiuneComenzi(ArrayList<IProdus> produseDepozit) {
+    public GestiuneComenzi(ArrayList<IProdus> produseDepozit, ArrayList<Comanda> comenziDepozit) {
 
 
         setContentPane(gestiuneComenziPanel);
@@ -57,16 +59,36 @@ public class GestiuneComenzi extends JFrame{
         setSize(800,600);
         setLocationRelativeTo(null);
 
+        for(Comanda com: comenziDepozit){
+            if(com instanceof ComandaIntrata){
+                comIntrate.addElement((ComandaIntrata) com);
+            }
+            else if (com instanceof ComandaIesita) {
+                comIesite.addElement((ComandaIesita) com);
+            }
+        }
 
-        DepozitUtils.initComIntrate(comIntrate);
+        if(comenziDepozit.isEmpty()) {
+            DepozitUtils.initComIntrate(comIntrate);
+            for(Object comIn: Arrays.asList(comIntrate.toArray())){
+                comenziDepozit.add((ComandaIntrata)comIn);
+            }
+            DepozitUtils.initComIesite(comIesite);
+            for(Object comOut: Arrays.asList(comIesite.toArray())){
+                comenziDepozit.add((ComandaIesita)comOut);
+            }
+        }
+
         comIntrList.setModel(comIntrate);
         comIntrList.setCellRenderer(new DefaultListCellRenderer());
         comIntrList.setVisible(true);
 
-        DepozitUtils.initComIesite(comIesite);
         comIesList.setModel(comIesite);
         comIesList.setCellRenderer(new DefaultListCellRenderer());
         comIesList.setVisible(true);
+
+
+        clientFurnizorPanel.setVisible(false);
 
         detaliiComBtn.addActionListener(new ActionListener() {
             @Override
@@ -99,8 +121,10 @@ public class GestiuneComenzi extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(null!=comIntrList.getSelectedValue()){
+                    comenziDepozit.remove(comIntrList.getSelectedValue());
                     comIntrate.remove(comIntrList.getSelectedIndex());
                 } else if (null!=comIesList.getSelectedValue()) {
+                    comenziDepozit.remove(comIesList.getSelectedValue());
                     comIesite.remove(comIesList.getSelectedIndex());
                 }else {
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
@@ -165,14 +189,50 @@ public class GestiuneComenzi extends JFrame{
         backButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Start(produseDepozit);
+                new Start(produseDepozit, comenziDepozit);
                 dispose();
             }
         });
+        comIntrRB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                comIesRB.setSelected(false);
+                clientFurnizorLB.setText("Client");
+                clientFurnizorPanel.setVisible(true);
+            }
+        });
+        comIesRB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                comIntrRB.setSelected(false);
+                clientFurnizorLB.setText("Furnizor");
+                clientFurnizorPanel.setVisible(true);
+            }
+        });
+        creareComBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!comIntrRB.isSelected() && !comIesRB.isSelected()){
+                    JOptionPane.showMessageDialog(GestiuneComenzi.this,
+                            "Selectati tipul comenzii");
+                }
+                else if (clientFurnizorTF.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(GestiuneComenzi.this,
+                            "Introduceti "+clientFurnizorLB.getText()+"ul");
+                }
+                else {
+                    if (comIntrRB.isSelected()){
+                        ComandaIntrata com = new ComandaIntrata(clientFurnizorTF.getText());
+                        comIntrate.addElement(com);
+                        comenziDepozit.add(com);
+                    }
+                    else if (comIesRB.isSelected()) {
+                        ComandaIesita com = new ComandaIesita(clientFurnizorTF.getText());
+                        comIesite.addElement(com);
+                        comenziDepozit.add(com);
+                    }
+                }
+            }
+        });
     }
-
-    /*
-    private void createUIComponents() {
-        System.out.println("GestiuneComenzi.createUIComponents was used");
-    }*/
 }

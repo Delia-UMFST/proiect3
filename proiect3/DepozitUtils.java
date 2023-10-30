@@ -3,13 +3,9 @@ package proiect3;
 import proiect3.entitati.gestiune.ComandaIesita;
 import proiect3.entitati.gestiune.ComandaIntrata;
 import proiect3.entitati.gestiune.ItemComanda;
-import proiect3.entitati.inventar.Carte;
-import proiect3.entitati.inventar.IProdus;
-import proiect3.entitati.inventar.Joc;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class DepozitUtils {

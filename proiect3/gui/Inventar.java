@@ -1,5 +1,6 @@
 package proiect3.gui;
 
+import proiect3.entitati.gestiune.Comanda;
 import proiect3.entitati.inventar.Carte;
 import proiect3.entitati.inventar.IProdus;
 import proiect3.entitati.inventar.Joc;
@@ -51,7 +52,7 @@ public class Inventar extends JFrame {
 
     JFrame Inventar=new JFrame();
 
-    public Inventar(ArrayList<IProdus> produseDepozit) {
+    public Inventar(ArrayList<IProdus> produseDepozit, ArrayList<Comanda> comenziDepozit) {
         setContentPane(gestiuneInventar);
         setTitle("Inventar");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -286,7 +287,7 @@ public class Inventar extends JFrame {
         backButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Start(produseDepozit);
+                new Start(produseDepozit, comenziDepozit);
                 dispose();
             }
         });

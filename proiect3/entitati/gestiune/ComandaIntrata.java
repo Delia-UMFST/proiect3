@@ -12,7 +12,9 @@ public class ComandaIntrata extends Comanda {
         idComanda='I'+String.format("%1$06d", comenziInCounter);
         ++comenziInCounter;
     }
-    public ComandaIntrata(){
+    public ComandaIntrata(String client){
+        super();
+        this.client=client;
         idComanda='I'+String.format("%1$06d", comenziInCounter);
         ++comenziInCounter;
     }

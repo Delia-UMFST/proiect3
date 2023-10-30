@@ -13,6 +13,8 @@ public class ComandaIesita extends Comanda {
         ++comenziOutCounter;
     }
     public ComandaIesita(String furnizor){
+        super();
+        this.furnizor=furnizor;
         idComanda='O'+String.format("%1$06d",comenziOutCounter);
         ++comenziOutCounter;
     }

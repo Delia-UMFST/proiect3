@@ -17,7 +17,7 @@ public abstract class Comanda {
         pretComanda=calculPretComanda();
     }
     public Comanda(){
-
+        this.produse=new ArrayList<>();
     }
 
     public abstract void calculPretItem(ItemComanda item);
@@ -56,6 +56,7 @@ public abstract class Comanda {
         }
         produse.add(item);
         calculPretItem(item);
+        pretComanda=calculPretComanda();
     }
 
     public void removeItem(ItemComanda item) {
@@ -64,6 +65,7 @@ public abstract class Comanda {
                     " exista deja in comanda "+idComanda);
         }
         produse.remove(item);
+        pretComanda=calculPretComanda();
     }
 
     public boolean existaProdus(IProdus produs){
