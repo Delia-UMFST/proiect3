@@ -7,25 +7,27 @@ public class ItemComanda {
     private IProdus produs;
     private int cantitate;
     private double pretItem;
-
+    //constructor care are ca parametrii produs si cantitate
     public ItemComanda(IProdus produs, int cantitate) {
         this.produs = produs;
         this.cantitate = cantitate;
     }
-
+    //cosntructor care preia un produs din lista de produse si ii seteaza cantitatea la 1
     public ItemComanda(IProdus produs) {
         this.produs = produs;
         cantitate=1;
     }
 
+    //returneaza produs
     public IProdus getProdus() {
         return produs;
     }
-
+    //seteaza produs
     public void setProdus(IProdus produs) {
         this.produs = produs;
     }
 
+    //returneaza cantitate
     public int getCantitate() {
         return cantitate;
     }
@@ -35,23 +37,28 @@ public class ItemComanda {
             this.cantitate = cantitate;
         }
     }
-
+    //creste cantitatea produsului
     public void incrCantitate(){
         ++cantitate;
     }
-
+    //scade cantitatea produsului
     public void decrCantitate(){
         --cantitate;
     }
 
+    //returneaza pretItem
     public double getPretItem() {
         return pretItem;
     }
 
+    //seteaza pretItem
     public void setPretItem(double pretItem) {
         this.pretItem = pretItem;
     }
 
+
+    //returneaza un String creat cu StringBuilder
+    //se returneaza informatiile unui produs: SKU, nume, cantitate, pretItem
     @Override
     public String toString() {
         StringBuilder sb=new StringBuilder();

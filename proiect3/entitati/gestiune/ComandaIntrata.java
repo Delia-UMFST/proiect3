@@ -6,12 +6,16 @@ public class ComandaIntrata extends Comanda {
     private static int comenziInCounter=0;
     private String client;
 
+    //constructor cu lista de produse, clienti care genereaza un identificator unic pentru comenzi
+
     public ComandaIntrata(ArrayList<ItemComanda> produse, String client) {
         super(produse);
         this.client=client;
         idComanda='I'+String.format("%1$06d", comenziInCounter);
         ++comenziInCounter;
     }
+    //constructor cu client care creeaza identificatori unici pentru fiecare comanda
+
     public ComandaIntrata(String client){
         super();
         this.client=client;
@@ -19,10 +23,13 @@ public class ComandaIntrata extends Comanda {
         ++comenziInCounter;
     }
 
+    //calculeaza pretul fiecarui item din comanda
     @Override
     public void calculPretItem(ItemComanda item) {
         item.setPretItem(item.getCantitate() * item.getProdus().getPretRaft());
     }
+
+    //returneaza informatii despre comanda cu ajutorul Stringbufferului
 
     @Override
     public String infoComanda() {
@@ -37,17 +44,23 @@ public class ComandaIntrata extends Comanda {
         return info.toString();
     }
 
+    //returneaza client
     public String getClient() {
         return client;
     }
 
+    //seteaza client
     public void setClient(String client) {
         this.client = client;
     }
 
+    //returneaza ComenziOutCounter, numarul de comenzi iesite
     public static int getComenziInCounter() {
         return comenziInCounter;
     }
+
+    //returneaza un String creat cu StringBuilder
+    // informatiile pe care le contine Stringul sun:idComanda,client,pretComanda
     @Override
     public String toString(){
         StringBuilder sb=new StringBuilder();
