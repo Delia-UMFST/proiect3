@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class DepozitMagazin extends JFrame {
     private static final IProdus demoProd1 =new Joc("Catan", 3, "12346",100.0);
     private static final IProdus demoProd2 =new Joc("Ticket to Ride", 4, "9274",150.0);
-    private static final IProdus demoProd3 =new Joc("Azul", 7, "2713",84.99);
+    private static final IProdus demoProd3 =new Joc("Azul", 7, "2713",100.99);
     private static final IProdus demoProd4 =new Carte("Prima mea Enciclopedie", 2, "5555",30.0);
     private static final IProdus demoProd5 =new Carte("Un loc sub soare", 5, "3924",47.5);
 
@@ -21,13 +21,13 @@ public class DepozitMagazin extends JFrame {
             Arrays.asList(demoProd1, demoProd2, demoProd3, demoProd4, demoProd5)
     );
 
-    public ArrayList<IProdus> getProduse(){
+    public static ArrayList<IProdus> getProduse(){
         return produse;
     }
 
     public DepozitMagazin() {
 
-        new Start();
+        new Start(produse);
 
 
     }

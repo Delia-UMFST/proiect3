@@ -1,8 +1,11 @@
 package proiect3.gui;
 
+import proiect3.entitati.inventar.IProdus;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Start extends JFrame {
     JFrame Start=new JFrame();
@@ -11,7 +14,7 @@ public class Start extends JFrame {
     private JPanel AccesGestiune;
 
 
- public Start (){
+ public Start (ArrayList<IProdus> produseDepozit){
      setContentPane(AccesGestiune);
 
      setVisible(true);
@@ -24,7 +27,7 @@ public class Start extends JFrame {
      accesComenzi.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-             new GestiuneComenzi();
+             new GestiuneComenzi(produseDepozit);
              dispose();
 
          }
@@ -33,7 +36,7 @@ public class Start extends JFrame {
      accesInventar.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            new Inventar();
+            new Inventar(produseDepozit);
             dispose();
          }
      });

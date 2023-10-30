@@ -9,6 +9,7 @@ import proiect3.exceptii.ProdusDuplicatException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AddProduseWindow extends JPanel {
     private JPanel addProdusePanel;
@@ -19,7 +20,7 @@ public class AddProduseWindow extends JPanel {
     private JLabel produseLB;
     private DefaultListModel<IProdus> produseListModel = new DefaultListModel<>();
 
-    public AddProduseWindow(Comanda comanda){
+    public AddProduseWindow(ArrayList<IProdus> produseDepozit, Comanda comanda){
 
         //setContentPane(addProdusePanel);
         add(addProdusePanel);
@@ -33,7 +34,7 @@ public class AddProduseWindow extends JPanel {
         produseList.setCellRenderer(new DefaultListCellRenderer());
         produseList.setVisible(true);
 
-        for (IProdus produs : DepozitUtils.produse) {
+        for (IProdus produs : produseDepozit) {
             produseListModel.addElement(produs);
         }
 

@@ -22,9 +22,9 @@ public class DepozitUtils {
         Random rand = new Random();
         for(int i=0;i<3;++i){
             ArrayList<ItemComanda> prod = new ArrayList<>();
-            prod.add(new ItemComanda(demoProd1,1+rand.nextInt(10)));
-            prod.add(new ItemComanda(demoProd2,1+rand.nextInt(10)));
-            prod.add(new ItemComanda(demoProd4,1+rand.nextInt(10)));
+            prod.add(new ItemComanda(DepozitMagazin.getProduse().get(i),1+rand.nextInt(10)));
+            prod.add(new ItemComanda(DepozitMagazin.getProduse().get(i+1),1+rand.nextInt(10)));
+            prod.add(new ItemComanda(DepozitMagazin.getProduse().get(i+2),1+rand.nextInt(10)));
             ComandaIntrata com=new ComandaIntrata(prod,"Client"+i+" SRL");
             comIntrate.addElement(com);
         }
@@ -34,9 +34,9 @@ public class DepozitUtils {
         Random rand = new Random();
         for(int i=0;i<3;++i){
             ArrayList<ItemComanda> prod = new ArrayList<>();
-            prod.add(new ItemComanda(demoProd3,1+rand.nextInt(10)));
-            prod.add(new ItemComanda(demoProd4,1+rand.nextInt(10)));
-            prod.add(new ItemComanda(demoProd5,1+rand.nextInt(10)));
+            prod.add(new ItemComanda(DepozitMagazin.getProduse().get(i),1+rand.nextInt(10)));
+            prod.add(new ItemComanda(DepozitMagazin.getProduse().get(i+1),1+rand.nextInt(10)));
+            prod.add(new ItemComanda(DepozitMagazin.getProduse().get(i+2),1+rand.nextInt(10)));
             ComandaIesita com=new ComandaIesita(prod,"Furnizor"+i+" SRL");
             comIesite.addElement(com);
         }
