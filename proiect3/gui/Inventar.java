@@ -7,6 +7,7 @@ import proiect3.entitati.inventar.Joc;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Inventar extends JFrame {
@@ -38,6 +39,7 @@ public class Inventar extends JFrame {
     private JTextField SKUPretTF;
     private JTextField SKUStocTF;
     private JLabel SKUStoc;
+    private JButton backButon;
     private JList list1;
     //IProdus=interfata
     //Produse = Jlist, partea vizuala a listei
@@ -49,7 +51,7 @@ public class Inventar extends JFrame {
 
     JFrame Inventar=new JFrame();
 
-    public Inventar() {
+    public Inventar(ArrayList<IProdus> produseDepozit) {
         setContentPane(gestiuneInventar);
         setTitle("Inventar");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -65,10 +67,7 @@ public class Inventar extends JFrame {
 
 
 
-        for (IProdus produs : Arrays.asList(new Joc("Catan", 3, "12346",
-                100.0), new Joc("Ticket to Ride", 4, "9274",
-                150.0), new Carte("Prima mea Enciclopedie", 2, "5555",
-                30.0))) {
+        for (IProdus produs : produseDepozit) {
             ProdusListModel.addElement(produs);
         }
 
@@ -83,8 +82,8 @@ public class Inventar extends JFrame {
                 boolean validPretintrP=false;
                 boolean produsExistent=false;
 
-                for(Object produs: Arrays.asList(ProdusListModel.toArray())){
-                    if(ProdusSKUTF.getText().equals(((IProdus)produs).getSKU())){
+                for(IProdus produs: produseDepozit){
+                    if(ProdusSKUTF.getText().equals(produs.getSKU())){
                         JOptionPane.showMessageDialog(Inventar.this,
                                 "Produs existent. nu se poate crea unul nou.");
                         produsExistent=true;
@@ -116,11 +115,15 @@ public class Inventar extends JFrame {
 
                 if(!numeP.isEmpty() && !SKUP.isEmpty() && validStocP &&validPretintrP&&!produsExistent) {
                     if (TipCarte.isSelected()) {
-                        ProdusListModel.addElement(new Carte(numeP, stocP, SKUP, PretIntrP));
+                        Carte carte=new Carte(numeP, stocP, SKUP, PretIntrP);
+                        ProdusListModel.addElement(carte);
+                        produseDepozit.add(carte);
 
                     }
                     else if (TipJoc.isSelected()) {
-                        ProdusListModel.addElement(new Joc(numeP, stocP, SKUP, PretIntrP));
+                        Joc joc=new Joc(numeP, stocP, SKUP, PretIntrP);
+                        ProdusListModel.addElement(joc);
+                        produseDepozit.add(joc);
 
                     }
                 }
@@ -278,6 +281,13 @@ public class Inventar extends JFrame {
 
                 SKUStocTF.setText("");
                 ProdusModificareStocTF.setText("");
+            }
+        });
+        backButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Start(produseDepozit);
+                dispose();
             }
         });
     }

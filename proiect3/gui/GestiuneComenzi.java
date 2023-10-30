@@ -3,12 +3,14 @@ package proiect3.gui;
 import proiect3.DepozitUtils;
 import proiect3.entitati.gestiune.ComandaIesita;
 import proiect3.entitati.gestiune.ComandaIntrata;
+import proiect3.entitati.inventar.IProdus;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GestiuneComenzi extends JFrame{
 
@@ -38,9 +40,11 @@ public class GestiuneComenzi extends JFrame{
     private JList<ComandaIntrata> comIntrList;
     private DefaultListModel<ComandaIntrata> comIntrate = new DefaultListModel<>();
     private JList<ComandaIesita> comIesList;
+    private JButton backButon;
+    private JPanel backBtnPanel;
     private DefaultListModel<ComandaIesita> comIesite = new DefaultListModel<>();
 
-    public GestiuneComenzi() {
+    public GestiuneComenzi(ArrayList<IProdus> produseDepozit) {
 
 
         setContentPane(gestiuneComenziPanel);
@@ -112,7 +116,7 @@ public class GestiuneComenzi extends JFrame{
 
                     JDialog modalAddProduseDialog= new JDialog(GestiuneComenzi.this,
                             "Adaugare Produse Comanda "+comIntrList.getSelectedValue().getIdComanda(),true);
-                    modalAddProduseDialog.setContentPane(new AddProduseWindow(comIntrList.getSelectedValue()));
+                    modalAddProduseDialog.setContentPane(new AddProduseWindow(produseDepozit,comIntrList.getSelectedValue()));
                     modalAddProduseDialog.pack();
                     modalAddProduseDialog.setLocationRelativeTo(GestiuneComenzi.this);
                     modalAddProduseDialog.setVisible(true);
@@ -122,7 +126,7 @@ public class GestiuneComenzi extends JFrame{
                 } else if (null!=comIesList.getSelectedValue()) {
                     JDialog modalAddProduseDialog= new JDialog(GestiuneComenzi.this,
                             "Adaugare Produse Comanda "+comIesList.getSelectedValue().getIdComanda(),true);
-                    modalAddProduseDialog.setContentPane(new AddProduseWindow(comIesList.getSelectedValue()));
+                    modalAddProduseDialog.setContentPane(new AddProduseWindow(produseDepozit,comIesList.getSelectedValue()));
                     modalAddProduseDialog.pack();
                     modalAddProduseDialog.setLocationRelativeTo(GestiuneComenzi.this);
                     modalAddProduseDialog.setVisible(true);
@@ -158,10 +162,17 @@ public class GestiuneComenzi extends JFrame{
                 }
             }
         });
+        backButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Start(produseDepozit);
+                dispose();
+            }
+        });
     }
 
-
+    /*
     private void createUIComponents() {
         System.out.println("GestiuneComenzi.createUIComponents was used");
-    }
+    }*/
 }
