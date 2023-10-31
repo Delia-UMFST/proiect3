@@ -1,6 +1,7 @@
 package proiect3.gui;
 
 import proiect3.DepozitUtils;
+import proiect3.Logger;
 import proiect3.entitati.gestiune.Comanda;
 import proiect3.entitati.inventar.IProdus;
 import proiect3.entitati.gestiune.ItemComanda;
@@ -22,13 +23,7 @@ public class AddProduseWindow extends JPanel {
 
     public AddProduseWindow(ArrayList<IProdus> produseDepozit, Comanda comanda){
 
-        //setContentPane(addProdusePanel);
         add(addProdusePanel);
-        //setLocationRelativeTo(null);
-        //setTitle("Adaugare Produse Comanda "+comanda.getIdComanda());
-        //setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        //setVisible(true);//se afiseaza Inventar
-        //setPreferredSize(new Dimension(500,500));
 
         produseList.setModel(produseListModel);
         produseList.setCellRenderer(new DefaultListCellRenderer());
@@ -45,7 +40,11 @@ public class AddProduseWindow extends JPanel {
                     if (cantitateTF.getText().isEmpty()) {
                         try {
                             comanda.addItem(new ItemComanda(produseList.getSelectedValue()));
+                            Logger.getInstance().log("Adaugare produs SKU:"+produseList.getSelectedValue().getSKU()
+                                    +"la comanda "+comanda.getIdComanda()+" (1BUC)");
                         }catch (ProdusDuplicatException ex){
+                            Logger.getInstance().log("ProdusDuplicatException la adaugare produs: comanda "
+                                    +comanda.getIdComanda()+", produs "+produseList.getSelectedValue().getSKU());
                             JOptionPane.showMessageDialog(AddProduseWindow.this,ex.getMessage());
                         }
                     } else {
@@ -55,13 +54,19 @@ public class AddProduseWindow extends JPanel {
                             cantitate = Integer.parseInt(cantitateTF.getText());
                             cantitateValida=true;
                         } catch (NumberFormatException ex) {
+                            Logger.getInstance().log("NumberFormatException la introducere cantitate: "
+                                    +cantitateTF.getText());
                             JOptionPane.showMessageDialog(AddProduseWindow.this,
                                     "Cantitate invalida: "+cantitateTF.getText());
                         }
                         if (cantitateValida){
                             try {
                                 comanda.addItem(new ItemComanda(produseList.getSelectedValue(), cantitate));
+                                Logger.getInstance().log("Adaugare produs SKU:"+produseList.getSelectedValue().getSKU()
+                                        +"la comanda "+comanda.getIdComanda()+" ("+cantitateTF.getText()+"BUC)");
                             }catch (ProdusDuplicatException ex){
+                                Logger.getInstance().log("ProdusDuplicatException la adaugare produs: comanda "
+                                        +comanda.getIdComanda()+", produs "+produseList.getSelectedValue().getSKU());
                                 JOptionPane.showMessageDialog(AddProduseWindow.this,ex.getMessage());
                             }
                         }

@@ -1,6 +1,7 @@
 package proiect3.gui;
 
 import proiect3.DepozitUtils;
+import proiect3.Logger;
 import proiect3.entitati.gestiune.Comanda;
 import proiect3.entitati.gestiune.ComandaIesita;
 import proiect3.entitati.gestiune.ComandaIntrata;
@@ -121,9 +122,11 @@ public class GestiuneComenzi extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(null!=comIntrList.getSelectedValue()){
+                    Logger.getInstance().log("Stergere comanda "+comIntrList.getSelectedValue().getIdComanda());
                     comenziDepozit.remove(comIntrList.getSelectedValue());
                     comIntrate.remove(comIntrList.getSelectedIndex());
                 } else if (null!=comIesList.getSelectedValue()) {
+                    Logger.getInstance().log("Stergere comanda "+comIesList.getSelectedValue().getIdComanda());
                     comenziDepozit.remove(comIesList.getSelectedValue());
                     comIesite.remove(comIesList.getSelectedIndex());
                 }else {
@@ -190,6 +193,7 @@ public class GestiuneComenzi extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Start(produseDepozit, comenziDepozit);
+                Logger.getInstance().log("Intoarcere la Start");
                 dispose();
             }
         });
@@ -223,11 +227,13 @@ public class GestiuneComenzi extends JFrame{
                 else {
                     if (comIntrRB.isSelected()){
                         ComandaIntrata com = new ComandaIntrata(clientFurnizorTF.getText());
+                        Logger.getInstance().log("Creare comanda "+com.getIdComanda());
                         comIntrate.addElement(com);
                         comenziDepozit.add(com);
                     }
                     else if (comIesRB.isSelected()) {
                         ComandaIesita com = new ComandaIesita(clientFurnizorTF.getText());
+                        Logger.getInstance().log("Creare comanda "+com.getIdComanda());
                         comIesite.addElement(com);
                         comenziDepozit.add(com);
                     }

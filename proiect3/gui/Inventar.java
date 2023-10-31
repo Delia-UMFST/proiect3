@@ -1,5 +1,6 @@
 package proiect3.gui;
 
+import proiect3.Logger;
 import proiect3.entitati.gestiune.Comanda;
 import proiect3.entitati.inventar.Carte;
 import proiect3.entitati.inventar.IProdus;
@@ -60,13 +61,9 @@ public class Inventar extends JFrame {
         setSize(700,700);
         setLocationRelativeTo(null);
 
-
-
         produse.setModel(ProdusListModel);
         produse.setCellRenderer(new DefaultListCellRenderer());
         produse.setVisible(true);
-
-
 
         for (IProdus produs : produseDepozit) {
             ProdusListModel.addElement(produs);
@@ -87,6 +84,7 @@ public class Inventar extends JFrame {
                     if(ProdusSKUTF.getText().equals(produs.getSKU())){
                         JOptionPane.showMessageDialog(Inventar.this,
                                 "Produs existent. nu se poate crea unul nou.");
+                        Logger.getInstance().log("Incercare introducere produs existent "+produs.getSKU());
                         produsExistent=true;
                     }
                 }
@@ -96,7 +94,7 @@ public class Inventar extends JFrame {
                         validStocP = true;
                     } catch (NumberFormatException nfe) {
                         JOptionPane.showMessageDialog(Inventar.this, "Introdu un numar intreg");
-
+                        Logger.getInstance().log("NumberFormatException la introducere inventar: "+ProdusStocTF.getText());
                     }
 
                 }
@@ -111,6 +109,7 @@ public class Inventar extends JFrame {
                 catch(NumberFormatException nfe){
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Introdu un numar cu doua zecimale");
+                    Logger.getInstance().log("NumberFormatException la introducere pret: "+ProdusPretIntrareTF.getText());
 
                 }
 
@@ -119,18 +118,19 @@ public class Inventar extends JFrame {
                         Carte carte=new Carte(numeP, stocP, SKUP, PretIntrP);
                         ProdusListModel.addElement(carte);
                         produseDepozit.add(carte);
-
+                        Logger.getInstance().log("Carte adaugata la inventar: "+carte);
                     }
                     else if (TipJoc.isSelected()) {
                         Joc joc=new Joc(numeP, stocP, SKUP, PretIntrP);
                         ProdusListModel.addElement(joc);
                         produseDepozit.add(joc);
-
+                        Logger.getInstance().log("Joc adaugat la inventar: "+joc);
                     }
                 }
                 else{
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Informatia introdusa nu este corecta.");
+                    Logger.getInstance().log("Incercare nereusita introducere produs");
                 }
                 ProdusNumeTF.setText("");
                 ProdusSKUTF.setText("");
@@ -163,6 +163,8 @@ public class Inventar extends JFrame {
                     if (SKUPretTF.getText().equals(((IProdus) produs).getSKU())) {
                         produsExistent = true;
                         if (DiscountSiScumpireTF.getText() != null) {
+                            Logger.getInstance().log("Crestere pret produs "+((IProdus) produs).getSKU()+" de la "
+                                    +((IProdus) produs).getPretRaft()+" cu "+DiscountSiScumpireTF.getText()+"%");
                             ((IProdus) produs).crestePret(Double.parseDouble(DiscountSiScumpireTF.getText()));
                             JOptionPane.showMessageDialog(Inventar.this,
                                     "Pretul produsului a fost modificat.");
@@ -177,6 +179,7 @@ public class Inventar extends JFrame {
                 if(produsExistent==false) {
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Produs inexistent. Creeaza produsul.");
+                    Logger.getInstance().log("Incercare crestere pret produs inexistent");
                 }
 
                 SKUPretTF.setText("");
@@ -195,6 +198,8 @@ public class Inventar extends JFrame {
                     if (SKUPretTF.getText().equals(((IProdus) produs).getSKU())) {
                         produsExistent = true;
                         if (DiscountSiScumpireTF.getText() != null) {
+                            Logger.getInstance().log("Scadere pret produs "+((IProdus) produs).getSKU()+" de la "
+                                    +((IProdus) produs).getPretRaft()+" cu "+DiscountSiScumpireTF.getText()+"%");
                             ((IProdus) produs).aplicaDiscount(Double.parseDouble(DiscountSiScumpireTF.getText()));
                             JOptionPane.showMessageDialog(Inventar.this,
                                     "Pretul produsului a fost modificat.");
@@ -209,6 +214,7 @@ public class Inventar extends JFrame {
                 if(produsExistent==false) {
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Produs inexistent. Creeaza produsul.");
+                    Logger.getInstance().log("Incercare scadere pret produs inexistent");
                 }
                 DiscountSiScumpireTF.setText("");
                 SKUPretTF.setText("");
@@ -225,10 +231,14 @@ public class Inventar extends JFrame {
                         produsExistent = true;
                         if (SKUStocTF.getText() != null) {
                             if(ProdusModificareStocTF.getText()!=null){
-                            ((IProdus) produs).eliminareStoc(Integer.parseInt(ProdusModificareStocTF.getText()));
-                            JOptionPane.showMessageDialog(Inventar.this,
-                                    "Stocul produsului a fost modificat.");}
+                                Logger.getInstance().log("Eliminare " + ProdusModificareStocTF.getText()+"BUC produs "
+                                        +((IProdus) produs).getSKU());
+                                ((IProdus) produs).eliminareStoc(Integer.parseInt(ProdusModificareStocTF.getText()));
+                                JOptionPane.showMessageDialog(Inventar.this,
+                                    "Stocul produsului a fost modificat.");
+                            }
                             if(ProdusModificareStocTF.getText()==null){
+                                Logger.getInstance().log("Eliminare 1BUC produs "+((IProdus) produs).getSKU());
                                 ((IProdus) produs).eliminareStoc();
                                 JOptionPane.showMessageDialog(Inventar.this,
                                         "Stocul produsului a fost modificat.");}
@@ -243,6 +253,8 @@ public class Inventar extends JFrame {
                 if(produsExistent==false) {
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Produs inexistent. Creeaza produsul.");
+
+                    Logger.getInstance().log("Incercare eliminare stoc produs inexistent");
                 }
                 SKUStocTF.setText("");
                 ProdusModificareStocTF.setText("");
@@ -259,10 +271,13 @@ public class Inventar extends JFrame {
                         produsExistent = true;
                         if (SKUStocTF.getText() != null) {
                             if(ProdusModificareStocTF.getText()!=null){
+                                Logger.getInstance().log("Adaugare " + ProdusModificareStocTF.getText()+"BUC produs "
+                                        +((IProdus) produs).getSKU());
                                 ((IProdus) produs).adaugareStoc(Integer.parseInt(ProdusModificareStocTF.getText()));
                                 JOptionPane.showMessageDialog(Inventar.this,
                                         "Stocul produsului a fost modificat.");}
                             if(ProdusModificareStocTF.getText()==null){
+                                Logger.getInstance().log("Eliminare 1BUC produs "+((IProdus) produs).getSKU());
                                 ((IProdus) produs).adaugareStoc();
                                 JOptionPane.showMessageDialog(Inventar.this,
                                         "Stocul produsului a fost modificat.");}
@@ -277,6 +292,7 @@ public class Inventar extends JFrame {
                 if(produsExistent==false) {
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Produs inexistent. Creeaza produsul.");
+                    Logger.getInstance().log("Incercare adaugare stoc produs inexistent");
                 }
 
 
@@ -288,6 +304,7 @@ public class Inventar extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Start(produseDepozit, comenziDepozit);
+                Logger.getInstance().log("Intoarcere la Start");
                 dispose();
             }
         });

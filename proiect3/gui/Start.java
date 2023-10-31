@@ -1,5 +1,6 @@
 package proiect3.gui;
 
+import proiect3.Logger;
 import proiect3.entitati.gestiune.Comanda;
 import proiect3.entitati.inventar.IProdus;
 
@@ -29,6 +30,7 @@ public class Start extends JFrame {
          @Override
          public void actionPerformed(ActionEvent e) {
              new GestiuneComenzi(produseDepozit, comenziDepozit);
+             Logger.getInstance().log("Acces gestiune");
              dispose();
 
          }
@@ -38,6 +40,7 @@ public class Start extends JFrame {
          @Override
          public void actionPerformed(ActionEvent e) {
             new Inventar(produseDepozit, comenziDepozit);
+            Logger.getInstance().log("Acces inventar");
             dispose();
          }
      });

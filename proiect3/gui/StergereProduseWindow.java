@@ -1,5 +1,6 @@
 package proiect3.gui;
 
+import proiect3.Logger;
 import proiect3.entitati.gestiune.Comanda;
 import proiect3.entitati.gestiune.ItemComanda;
 import proiect3.exceptii.ProdusInexistentException;
@@ -38,10 +39,14 @@ public class StergereProduseWindow extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if(null!=produseList.getSelectedValue()) {
                     try{
+                        Logger.getInstance().log("Stergere produs SKU:"+produseList.getSelectedValue().getProdus().getSKU()
+                                +"din comanda "+comanda.getIdComanda());
                         comanda.removeItem(produseList.getSelectedValue());
                         produseListModel.remove(produseList.getSelectedIndex());
                     }
                     catch (ProdusInexistentException ex){
+                        Logger.getInstance().log("ProdusInexistentException la stergere produs: comanda "
+                                +comanda.getIdComanda()+", produs "+produseList.getSelectedValue().getProdus().getSKU());
                         JOptionPane.showMessageDialog(StergereProduseWindow.this,ex.getMessage());
                     }
                 }
