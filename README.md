@@ -19,8 +19,6 @@
 
 <!-- DESPRE PROIECT -->
 ## Despre proiect
-//aici vine diagrama UML
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 La inceperea programului, va aparea fereastra Start, de unde utilizatorul va alege ce doreste sa vizioneze, Inventarul sau Gestiune Comenzi. Dand click pe butoane, se va afisa fereastra de Inventar respectiv Gestiune. 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -59,7 +57,9 @@ Clasa PretProdus gestioneaza informatiile legate de preturile produselor, de exe
 ### Pachet exceptii
 <h4 align="center">Pachet exceptii</h4>
 
-https://github.com/Delia-UMFST/proiect3/issues/1#issue-1969983677
+<img src="C:\Users\HP\Proiectul 3\proiect3" alt="Diagrama Exceptii" title="Diagrama Exceptii">
+
+
 <h5 align="left">DepozitException</h5>
 Clasa DepozitException extinde clasa RuntimeException care este o clasa de exceptii verificate in Java.
 <h5 align="left">ComandaException</h5>
