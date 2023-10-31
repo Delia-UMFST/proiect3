@@ -74,9 +74,12 @@ Clasa ProdusInexistentException este o subclasa a clasei ComandaException care e
 <h4 align="center">Pachet GUI</h4>
 
 <h5 align="left">Main</h5>
+Main-ul proiectului.
 <h5 align="left">DepozitMagazin</h5>
-DepozitMagazin este o clasa folosita pentru gestionarea depozitului. 
-<h5 align="left">DepozitUtil</h5>
-
+DepozitMagazin este o clasa folosita pentru gestionarea depozitului. Contine doua liste, care returneaza produse, respectiv comenzi.
+<h5 align="left">DepozitUtils</h5>
+Clasa DepozitUtils contine doua liste, una cu comenzi intrate si celalalta cu comenzi iesite.Contine furnizori/clienti cu comenzi generate random care sunt adaugate la listele aferente.
+<h5 align="left">Logger</h5>
+Clasa Logger este o clasa de tip Singleton folosita pentru logarea erorilor intr-un fisier.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
