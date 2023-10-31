@@ -1,5 +1,5 @@
 <h3 align="center">Gestiunea unui magazin</h3>
-<p align="center">Proiectul reprezinta gestiunea unui magazincare are doua tipuri de produse, jocuri si carti.</p>
+<p align="center">Proiectul reprezinta gestiunea unui magazin care are doua tipuri de produse, jocuri si carti.</p>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -20,12 +20,27 @@
 <!-- DESPRE PROIECT -->
 ## Despre proiect
 
-La inceperea programului, va aparea fereastra Start, de unde utilizatorul va alege ce doreste sa vizioneze, Inventarul sau Gestiune Comenzi. Dand click pe butoane, se va afisa fereastra de Inventar respectiv Gestiune. 
+La inceperea programului, va aparea fereastra Start, de unde utilizatorul va alege ce doreste sa afiseze, Inventarul sau Gestiunea Comenzilor. Dand click pe butoane, se va afisa fereastra de Inventar respectiv Gestiune. 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- DESCRIERE DETALIATA-->
 ## Desciere deliata
+
+### Pachet proiect3
+<h4 align="centre">Pachet proiect3</h4>
+
+<img src="Diagrama GUI 2.png" alt="Diagrama GUI 2" title="Diagrama GUI 2">
+
+<h5 align="left">Main</h5>
+Main-ul proiectului.
+<h5 align="left">DepozitMagazin</h5>
+DepozitMagazin este o clasa folosita pentru gestionarea depozitului. Contine doua liste, care contin produse, respectiv comenzi.
+<h5 align="left">DepozitUtils</h5>
+Clasa DepozitUtils contine doua metode pentru demonstrarea functionalitatii aplicatiei, una care initializeaza o lista de comenzi intrate si celalalta care initializeaza o lista de comenzi iesite, cu cantitati aleatorii ale produselor din comenzi.
+<h5 align="left">Logger</h5>
+Clasa Logger este o clasa de tip Singleton folosita pentru logarea evenimentelor intr-un fisier.
+
 ### Pachet gestiune
 <h4 align="center">Pachet gestiune</h4>
 
@@ -34,11 +49,11 @@ La inceperea programului, va aparea fereastra Start, de unde utilizatorul va ale
 <h5 align="left">Comanda</h5>
 Aceasta clasa abstracta serveste ca si schelet pentru obiectele de tip comanda si face posibila adugarea si eliminarea produselor din comanda, calculul preturilor, obtinerea informatiilor despre comanda.
 <h5 align="left">ComandaIesita</h5>
-Clasa ComandaIesita extinde clasa Comanda, implementeaza metodele din clasa Comanda. Clasa este utilizata pentru a gestiona comenzile care ies din sistem si furnizeaza informatii despre acestea.
+Clasa ComandaIesita extinde clasa Comanda, implementeaza metodele abstracte din clasa Comanda. Clasa este utilizata pentru a gestiona comenzile care ies din sistem si furnizeaza informatii despre acestea.
 <h5 align="left">ComandaIntrata</h5>
-Clasa ComandaIntrata extinde clasa Comanda, implementeaza metodele din clasa Comanda. Reprezinta comenzile care intra in sistem de la clienti.
+Clasa ComandaIntrata extinde clasa Comanda, implementeaza metodele abstracte din clasa Comanda. Reprezinta comenzile care intra in sistem de la clienti.
 <h5 align="left">ItemComanda</h5>
-Aceasta clasa reprezinta un produs din comanda. Contine informatii despre produs: cantitate, pret.
+Aceasta clasa reprezinta un item din comanda. Contine informatii despre produsul comandat, cantitatea comnadata, si pret.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -68,9 +83,9 @@ Clasa PretProdus gestioneaza informatiile legate de preturile produselor, de exe
 <h5 align="left">DepozitException</h5>
 Clasa DepozitException extinde clasa RuntimeException care este o clasa de exceptii verificate in Java.
 <h5 align="left">ComandaException</h5>
-clasa ComandaException extinde o alta clasa de exceptii numita DepozitException care gestioneaza operatiile sau erorile legate de comenzi.
+clasa ComandaException extinde clasa de exceptii DepozitException care este aruncata in cazul erorilor legate de comenzi.
 <h5 align="left">ProdusDuplicatException</h5>
-Clasa ProdusDuplicatException este o subclasa a clasei ComandaException care este o subclasa a DepozitException care extinde clasa RuntimeException. ProdusDuplicateException este utilizat in cazul in care se incearca adaugarea unui produs existent.
+Clasa ProdusDuplicatException este o subclasa a clasei ComandaException care este o subclasa a DepozitException care extinde clasa RuntimeException. ProdusDuplicateException este utilizat in cazul in care se incearca adaugarea unui produs deja existent.
 <h5 align="left">ProdusInexistentException</h5>
 Clasa ProdusInexistentException este o subclasa a clasei ComandaException care este o subclasa a DepozitException care extinde clasa RuntimeException. ProdusInexistentException este utilizat in cazul in care un produs nu exista.
 
@@ -80,16 +95,7 @@ Clasa ProdusInexistentException este o subclasa a clasei ComandaException care e
 <h4 align="center">Pachet GUI</h4>
 
 <img src="Diagrama GUI.png" alt="Diagrama GUI" title="Diagrama GUI">
-<img src="Diagrama GUI 2.png" alt="Diagrama GUI 2" title="Diagrama GUI 2">
 
-<h5 align="left">Main</h5>
-Main-ul proiectului.
-<h5 align="left">DepozitMagazin</h5>
-DepozitMagazin este o clasa folosita pentru gestionarea depozitului. Contine doua liste, care returneaza produse, respectiv comenzi.
-<h5 align="left">DepozitUtils</h5>
-Clasa DepozitUtils contine doua liste, una cu comenzi intrate si celalalta cu comenzi iesite.Contine furnizori/clienti cu comenzi generate random care sunt adaugate la listele aferente.
-<h5 align="left">Logger</h5>
-Clasa Logger este o clasa de tip Singleton folosita pentru logarea erorilor intr-un fisier.
 <h5 align="left">AddProduseWindow</h5>
 Fereastra modala pentru adaugarea de produse la o comanda.
 <h5 align="left">GestiuneComenzi</h5>
