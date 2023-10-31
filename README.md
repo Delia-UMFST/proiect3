@@ -28,6 +28,9 @@ La inceperea programului, va aparea fereastra Start, de unde utilizatorul va ale
 ## Desciere deliata
 ### Pachet gestiune
 <h4 align="center">Pachet gestiune</h4>
+
+<img src="Diagrama Gestiune.png" alt="Diagrama Gestiune" title="Diagrama Gestiune">
+
 <h5 align="left">Comanda</h5>
 Aceasta clasa abstracta serveste ca si schelet pentru obiectele de tip comanda si face posibila adugarea si eliminarea produselor din comanda, calculul preturilor, obtinerea informatiilor despre comanda.
 <h5 align="left">ComandaIesita</h5>
@@ -41,6 +44,9 @@ Aceasta clasa reprezinta un produs din comanda. Contine informatii despre produs
 
 ### Pachet inventar
 <h4 align="center">Pachet inventar</h4>
+
+<img src="Diagrama Inventar.png" alt="Diagrama Inventar" title="Diagrama Inventar">
+
 
 <h5 align="left">IProdus</h5>
 Clasa IProdus este interfata, care defineste un set de metoda care vor fi implementate de tipurile de produse din sistemul de gestiune. 
@@ -72,6 +78,9 @@ Clasa ProdusInexistentException este o subclasa a clasei ComandaException care e
 
 ### Pachet GUI
 <h4 align="center">Pachet GUI</h4>
+
+<img src="Diagrama GUI.png" alt="Diagrama GUI" title="Diagrama GUI">
+<img src="Diagrama GUI 2.png" alt="Diagrama GUI 2" title="Diagrama GUI 2">
 
 <h5 align="left">Main</h5>
 Main-ul proiectului.
