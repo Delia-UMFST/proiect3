@@ -57,7 +57,7 @@ Clasa PretProdus gestioneaza informatiile legate de preturile produselor, de exe
 ### Pachet exceptii
 <h4 align="center">Pachet exceptii</h4>
 
-<img src="C:\Users\HP\Proiectul 3\proiect3" alt="Diagrama Exceptii" title="Diagrama Exceptii">
+<img src="C:\Users\HP\Proiectul 3\proiect3.jpg" alt="Diagrama Exceptii" title="Diagrama Exceptii">
 
 
 <h5 align="left">DepozitException</h5>
