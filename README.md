@@ -49,7 +49,7 @@ Aceasta clasa reprezinta un produs din comanda. Contine informatii despre produs
 
 
 <h5 align="left">IProdus</h5>
-Clasa IProdus este interfata, care defineste un set de metoda care vor fi implementate de tipurile de produse din sistemul de gestiune. 
+IProdus este interfata, care defineste un set de metoda care vor fi implementate de tipurile de produse din sistemul de gestiune. 
 <h5 align="left">Carte</h5>
 Aceasta clasa care reprezinta un tip de produs, implementeaza inferfata IProdus. Contine informatii despre acest tip de produs, cum ar fi numele, stoc, SKU, pretul.
 <h5 align="left">Joc</h5>
@@ -90,5 +90,18 @@ DepozitMagazin este o clasa folosita pentru gestionarea depozitului. Contine dou
 Clasa DepozitUtils contine doua liste, una cu comenzi intrate si celalalta cu comenzi iesite.Contine furnizori/clienti cu comenzi generate random care sunt adaugate la listele aferente.
 <h5 align="left">Logger</h5>
 Clasa Logger este o clasa de tip Singleton folosita pentru logarea erorilor intr-un fisier.
+<h5 align="left">AddProduseWindow</h5>
+Fereastra modala pentru adaugarea de produse la o comanda.
+<h5 align="left">GestiuneComenzi</h5>
+Clasa GestiuneComenzi este fereastra principala care se va ocupa de gestionarea comenzilor intrate si iesite.
+<h5 align="left">Inventar</h5>
+Clasa Inventar se ocupa cu inventarul produselor, aici se pot adauga produse noi pe inventar, modifica stocul produselor, pretul lor, adaugare discount. 
+<h5 align="left">Start</h5>
+Clasa Start este pentru afisarea ferestrei de start, din care utilizatorul va putea alege ce fereastra doreste sa vada in continuare: inventar sau gestiune.
+<h5 align="left">StergereProduseWindow</h5>
+Clasa este folosita pentru a afisa o noua fereastra in care se poate alege ce produs dorim sa stergem dintr-o comanda selectata.
+
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
