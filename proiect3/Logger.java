@@ -10,10 +10,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Logger {
+    //aceasta este o clasa Singleton folosita ca si logger
     private static Logger instance;
     private ArrayList<String> logs;
     private PrintWriter fileWriter;
 
+    //la apelarea constructorului se creeaza o lista nou,  dupa care se icnearca scriererea in fisier
+    //in caz de eroare se printeaza stiva erorii
     private Logger() {
         logs = new ArrayList<>();
         try {
@@ -22,7 +25,7 @@ public class Logger {
             e.printStackTrace();
         }
     }
-
+    //instantiere
     public static Logger getInstance() {
         if (instance == null) {
             instance = new Logger();
@@ -30,6 +33,7 @@ public class Logger {
         return instance;
     }
 
+    //textul care se va afisa in logger, care contine data, unde s-a intalnit eroarea, stiva
     public void log(String message) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss z")
                     .withZone(ZoneId.systemDefault());
