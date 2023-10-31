@@ -18,13 +18,7 @@ public class StergereProduseWindow extends JPanel {
 
     public StergereProduseWindow(Comanda comanda){
 
-        //setContentPane(stergeProdusePanel);
         add(stergeProdusePanel);
-        //setLocationRelativeTo(null);
-        //setTitle("Stergere Produse Comanda "+comanda.getIdComanda());
-        //setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        //setVisible(true);//se afiseaza Inventar
-        //setSize(500,500);
 
         produseList.setModel(produseListModel);
         produseList.setCellRenderer(new DefaultListCellRenderer());
@@ -34,6 +28,7 @@ public class StergereProduseWindow extends JPanel {
             produseListModel.addElement(item);
         }
 
+        //stergerea unui item din comanda
         stergereBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

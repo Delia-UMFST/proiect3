@@ -43,13 +43,7 @@ public class Inventar extends JFrame {
     private JLabel SKUStoc;
     private JButton backButon;
     private JList list1;
-    //IProdus=interfata
-    //Produse = Jlist, partea vizuala a listei
-    //ProdusListModel= partea functionala, care functioneaza ca un arraylist
-    //private JList<IProdus> produse = new JList<>();
-   private DefaultListModel<IProdus> ProdusListModel = new DefaultListModel<>();
-
-    //
+    private DefaultListModel<IProdus> ProdusListModel = new DefaultListModel<>();
 
     JFrame Inventar=new JFrame();
 
@@ -188,7 +182,6 @@ public class Inventar extends JFrame {
                     }
                 }
                 //mesaj afisat utilizatorului in cazul in care produsul nu exista
-
                 if(produsExistent==false) {
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Produs inexistent. Creeaza produsul.");
@@ -211,18 +204,21 @@ public class Inventar extends JFrame {
                 for(Object produs: Arrays.asList(ProdusListModel.toArray())) {
                     if (SKUPretTF.getText().equals(((IProdus) produs).getSKU())) {
                         produsExistent = true;//se verifica daca exsita produsul
-                        if (DiscountSiScumpireTF.getText() != null) {//daca campul DiscountSiScumpireTF nu este gol
+                        if (DiscountSiScumpireTF.getText() != null) {
+                            //daca campul DiscountSiScumpireTF nu este gol
                             //se aplica un discount produsului si se logheaza in logger
                             Logger.getInstance().log("Scadere pret produs "+((IProdus) produs).getSKU()+" de la "
                                     +((IProdus) produs).getPretRaft()+" cu "+DiscountSiScumpireTF.getText()+"%");
                             discountAcceptabil=((IProdus) produs).aplicaDiscount(Double.parseDouble(DiscountSiScumpireTF.getText()));
-                            if(discountAcceptabil){//se verifica daca discountul este acceptabil.
+                            if(discountAcceptabil){
+                                //se verifica daca discountul este acceptabil.
                                 //un discount acceptabil este mai mare decat pretul de intrare al produsului+ TVA
                                 //adica firma sa nu iasa in pierdere
                             JOptionPane.showMessageDialog(Inventar.this,
                                     "Pretul produsului a fost modificat.");
                         }
-                            else {//in cazul in care discountul este prea mare, nu se va modifica pretul produsului
+                            else {
+                                //in cazul in care discountul este prea mare, nu se va modifica pretul produsului
                                 JOptionPane.showMessageDialog(Inventar.this,
                                         "Discountul este prea mare, pretul produsului nu a fost modificat.");
                             }
@@ -273,14 +269,16 @@ public class Inventar extends JFrame {
                                 JOptionPane.showMessageDialog(Inventar.this,
                                         "Stocul produsului a fost modificat.");}
                         }//daca nu s-a introdus SKU-ul produsului careia dorim sa ii modificam stocul
-                        if (SKUStocTF.getText() == null) {//se va afisa mesaj utilizatorului
+                        if (SKUStocTF.getText() == null) {
+                            //se va afisa mesaj utilizatorului
                             JOptionPane.showMessageDialog(Inventar.this,
                                     "Introduceti un SKU pentru a identifica produsul");
                         }
 
                     }
                 }
-                if(produsExistent==false) {//daca produsul nu exista se va afisa mesaj utilizatorului
+                if(produsExistent==false) {
+                    //daca produsul nu exista se va afisa mesaj utilizatorului
                     JOptionPane.showMessageDialog(Inventar.this,
                             "Produs inexistent. Creeaza produsul.");
                     //si se va loga in logger
@@ -291,8 +289,8 @@ public class Inventar extends JFrame {
                 ProdusModificareStocTF.setText("");
             }
         });
-        //daca se apasa pe butonul de adaugare pe stoc
 
+        //daca se apasa pe butonul de adaugare pe stoc
         StocAdaugaButon.addActionListener(new ActionListener() {
             boolean produsExistent=false;
 

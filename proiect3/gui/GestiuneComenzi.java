@@ -174,7 +174,6 @@ public class GestiuneComenzi extends JFrame{
                     modalStergereProduseDialog.pack();
                     modalStergereProduseDialog.setLocationRelativeTo(GestiuneComenzi.this);
                     modalStergereProduseDialog.setVisible(true);
-                    //new StergereProduseWindow(comIntrList.getSelectedValue());
                 } else if (null!=comIesList.getSelectedValue()) {
                     //se afiseaza mesaj de stergere produs selectat din comenzile iesite
                     JDialog modalStergereProduseDialog= new JDialog(GestiuneComenzi.this,
@@ -183,7 +182,6 @@ public class GestiuneComenzi extends JFrame{
                     modalStergereProduseDialog.pack();
                     modalStergereProduseDialog.setLocationRelativeTo(GestiuneComenzi.this);
                     modalStergereProduseDialog.setVisible(true);
-                    //new StergereProduseWindow(comIesList.getSelectedValue());
                 }else {
                     //daca nici o comanda nu este selectata, se afiseaza mesaj utilizatorului
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
@@ -220,7 +218,8 @@ public class GestiuneComenzi extends JFrame{
         creareComBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!comIntrRB.isSelected() && !comIesRB.isSelected()){//daca nu este selectat ce tip de comanda este
+                if(!comIntrRB.isSelected() && !comIesRB.isSelected()){
+                    //daca nu este selectat ce tip de comanda este
                     //se afiseaza mesaj pentru utilizator
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
                             "Selectati tipul comenzii");
