@@ -1,6 +1,5 @@
 package proiect3.gui;
 
-import proiect3.DepozitUtils;
 import proiect3.Logger;
 import proiect3.entitati.gestiune.Comanda;
 import proiect3.entitati.inventar.IProdus;
@@ -20,7 +19,7 @@ public class AddProduseWindow extends JPanel {
     private JList<IProdus> produseList;
     private JLabel produseLB;
     private DefaultListModel<IProdus> produseListModel = new DefaultListModel<>();
-    //clasa care are ca si parametru lista produseDepozit si obiectul comanda de tip comanda
+    //constructor care are ca si parametru lista produseDepozit si obiectul comanda de tip comanda
     public AddProduseWindow(ArrayList<IProdus> produseDepozit, Comanda comanda){
 
         add(addProdusePanel);
@@ -33,13 +32,15 @@ public class AddProduseWindow extends JPanel {
             produseListModel.addElement(produs);
         }
 
-        //adaugarea unui item pe stoc
+        //adaugarea unui item de pe stoc la comanda
         adaugareBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(null!=produseList.getSelectedValue()) {
-                    if (cantitateTF.getText().isEmpty()) {//daca TextField-ul este empty
-                        try {//se incearca adaugarea unei singure bucati din produsul selectat cu acel SKU
+                    //daca TextField-ul este gol
+                    if (cantitateTF.getText().isEmpty()) {
+                        try {
+                            //se incearca adaugarea unei singure bucati din produsul selectat cu acel SKU
                             comanda.addItem(new ItemComanda(produseList.getSelectedValue()));
                             Logger.getInstance().log("Adaugare produs SKU:"+produseList.getSelectedValue().getSKU()
                                     +"la comanda "+comanda.getIdComanda()+" (1BUC)");
@@ -53,7 +54,7 @@ public class AddProduseWindow extends JPanel {
                         int cantitate = 0;
                         boolean cantitateValida=false;
                         try {
-                            //citeste cantitatea si daca cantitatea are formatul corespunzator e valid si se afiseaza mesaj
+                            //citeste cantitatea si daca cantitatea are formatul corespunzator e valid
                             cantitate = Integer.parseInt(cantitateTF.getText());
                             cantitateValida=true;
                         } catch (NumberFormatException ex) {
@@ -63,7 +64,7 @@ public class AddProduseWindow extends JPanel {
                                     "Cantitate invalida: "+cantitateTF.getText());
                         }
                         if (cantitateValida){
-                            //daca cantitatea introduse este valida se adauga acel produs in cantitatea corespunzatoare
+                            //daca cantitatea introdusa este valida se adauga acel produs in cantitatea corespunzatoare
                             try {
                                 comanda.addItem(new ItemComanda(produseList.getSelectedValue(), cantitate));
                                 Logger.getInstance().log("Adaugare produs SKU:"+produseList.getSelectedValue().getSKU()

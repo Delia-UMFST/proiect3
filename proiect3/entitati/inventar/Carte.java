@@ -89,13 +89,13 @@ public class Carte implements IProdus {
     //se adauga pe stoc o unitate de produs
     @Override
     public int adaugareStoc() {
-        return stoc+1;
+        return stoc++;
     }
 
     //se scade de pe stoc o unitate de produs
     @Override
     public int eliminareStoc() {
-        return stoc-1;
+        return stoc--;
     }
 
     //returnare stoc

@@ -15,7 +15,7 @@ public class Logger {
     private ArrayList<String> logs;
     private PrintWriter fileWriter;
 
-    //la apelarea constructorului se creeaza o lista nou,  dupa care se icnearca scriererea in fisier
+    //la apelarea constructorului se creeaza o lista noua,  dupa care se incearca scriererea in fisier
     //in caz de eroare se printeaza stiva erorii
     private Logger() {
         logs = new ArrayList<>();
@@ -25,7 +25,7 @@ public class Logger {
             e.printStackTrace();
         }
     }
-    //instantiere
+    //returnarea instantei singleton
     public static Logger getInstance() {
         if (instance == null) {
             instance = new Logger();
@@ -33,7 +33,7 @@ public class Logger {
         return instance;
     }
 
-    //textul care se va afisa in logger, care contine data, unde s-a intalnit eroarea, stiva
+    //textul care se va afisa in logger, care contine data, mesajul, de unde s-a facut log-ul
     public void log(String message) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss z")
                     .withZone(ZoneId.systemDefault());

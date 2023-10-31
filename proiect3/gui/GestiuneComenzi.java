@@ -49,17 +49,14 @@ public class GestiuneComenzi extends JFrame{
 
     public GestiuneComenzi(ArrayList<IProdus> produseDepozit, ArrayList<Comanda> comenziDepozit) {
 
-
         setContentPane(gestiuneComenziPanel);
-        //setLocationRelativeTo(null);
-
 
         setVisible(true);//se afiseaza gestiuneComenzi
         setTitle("gestiuneComenzi");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800,600);
         setLocationRelativeTo(null);
-        // se adauga comenzile intrate si iesite in listele comIntrate si comIesite
+        //se adauga comenzile din comenziDepozit in listele corespunzatoare comIntrate si comIesite
         for(Comanda com: comenziDepozit){
             if(com instanceof ComandaIntrata){
                 comIntrate.addElement((ComandaIntrata) com);
@@ -125,12 +122,12 @@ public class GestiuneComenzi extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if(null!=comIntrList.getSelectedValue()){//daca este selectat
                     Logger.getInstance().log("Stergere comanda "+comIntrList.getSelectedValue().getIdComanda());
-                    comenziDepozit.remove(comIntrList.getSelectedValue());//comanda se va sterge din lista
-                    comIntrate.remove(comIntrList.getSelectedIndex());//se va sterge si indexul care ii apartine
+                    comenziDepozit.remove(comIntrList.getSelectedValue());//comanda se va sterge din lista comenziDepozit
+                    comIntrate.remove(comIntrList.getSelectedIndex());//se va sterge si din lista comIntrate
                 } else if (null!=comIesList.getSelectedValue()) {//daca este selectat
                     Logger.getInstance().log("Stergere comanda "+comIesList.getSelectedValue().getIdComanda());
                     comenziDepozit.remove(comIesList.getSelectedValue());//comanda se va sterge din lista
-                    comIesite.remove(comIesList.getSelectedIndex());//se va sterge si indexul care ii apartine
+                    comIesite.remove(comIesList.getSelectedIndex());//se va sterge si din lista comIntrate
                 }else {
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
                             "Selectati o comanda");//daca nicio comanda nu este selectata, se va afisa mesajul
@@ -142,26 +139,23 @@ public class GestiuneComenzi extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(null!=comIntrList.getSelectedValue()){//daca lista de comenzi intrate este selectata
-                    //se adauga produsul selectat la comanda
+                    //se deschide o fereastra modala de adaugare produse
                     JDialog modalAddProduseDialog= new JDialog(GestiuneComenzi.this,
                             "Adaugare Produse Comanda "+comIntrList.getSelectedValue().getIdComanda(),true);
                     modalAddProduseDialog.setContentPane(new AddProduseWindow(produseDepozit,comIntrList.getSelectedValue()));
                     modalAddProduseDialog.pack();
                     modalAddProduseDialog.setLocationRelativeTo(GestiuneComenzi.this);
                     modalAddProduseDialog.setVisible(true);
-
-                    //modalAddProduseDialog.add(new AddProduseWindow(comIntrList.getSelectedValue()));
-                    //new AddProduseWindow(comIntrList.getSelectedValue());
-                } else if (null!=comIesList.getSelectedValue()) {//daca lista de comenzi intrate este selectata
-                    //se adauga produsul selectat la comanda
+                } else if (null!=comIesList.getSelectedValue()) {//daca lista de comenzi iesite este selectata
+                    //se deschide o fereastra modala de adaugare produse
                     JDialog modalAddProduseDialog= new JDialog(GestiuneComenzi.this,
                             "Adaugare Produse Comanda "+comIesList.getSelectedValue().getIdComanda(),true);
                     modalAddProduseDialog.setContentPane(new AddProduseWindow(produseDepozit,comIesList.getSelectedValue()));
                     modalAddProduseDialog.pack();
                     modalAddProduseDialog.setLocationRelativeTo(GestiuneComenzi.this);
                     modalAddProduseDialog.setVisible(true);
-                    //new AddProduseWindow(comIesList.getSelectedValue());
-                }else {//daca nici o comanda nu este selectata, se afiseaza mesaj utilizatorului
+                }else {
+                    //daca nici o comanda nu este selectata, se afiseaza mesaj utilizatorului
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
                             "Selectati o comanda");
                 }

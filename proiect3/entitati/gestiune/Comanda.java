@@ -26,13 +26,13 @@ public abstract class Comanda {
     public abstract void calculPretItem(ItemComanda item);
     //metoda abstracta infoComanda
     public abstract String infoComanda();
-    //metoda care calculeaza pretul pentru fiecare produs din comanda
+    //metoda care actualizeaza pretul pentru fiecare produs din comanda
     public void calculPreturiProduse(){
         for(ItemComanda item: produse){
             calculPretItem(item);
         }
     }
-    //metoda care calculeaza pretul pentru fiecare produs din comanda
+    //metoda care calculeaza pretul total al comenzii
     public double calculPretComanda(){
         double pret=0;
         for(ItemComanda item: produse){
@@ -52,7 +52,7 @@ public abstract class Comanda {
     public double getPretComanda() {
         return pretComanda;
     }
-    //adauga un produs nou
+    //adauga un item nou la comanda
     public void addItem(ItemComanda item){
         if(existaProdus(item.getProdus())){//verificare daca acesta exista deja
             throw new ProdusDuplicatException("Produsul SKU:"+item.getProdus().getSKU()+

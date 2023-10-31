@@ -31,7 +31,7 @@ public class PretProdus {
     {
         this.pretRaft = pretRaft;
     }
-    //calculeaza valoarea TVA a unui produs bazat pe rpetul de intrare si a TVA-ului
+    //calculeaza valoarea TVA a unui produs bazat pe petul de intrare si a TVA-ului
     public double getValoareTVA() {
         return (pretIntrare/100)*TVA;
     }

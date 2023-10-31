@@ -7,7 +7,7 @@ public class Joc implements IProdus {
     private String SKU;
     private PretProdus pret;
     private String tip;
-    //constructor care are ca si lista de parametriiL nume,stoc, SKU,pretintrare
+    //constructor care are ca si lista de parametrii nume,stoc, SKU,pretintrare
 
     public Joc(String nume, int stoc, String SKU, double pretIntrare) {
         this.nume=nume;
@@ -70,31 +70,27 @@ public class Joc implements IProdus {
     }
 
     //se adauga la stocul existent numarul de produse cu care doreste utilizatorul sa creasca stocul
-
     @Override
     public int adaugareStoc(int nrcitit) {
         return stoc+=nrcitit;
     }
 
     //se scade din stocul existent numarul de produse pe care doreste utilizatorul sa il vanda/elimine
-
     @Override
     public int eliminareStoc(int nrcitit) {
         return stoc-=nrcitit;
     }
 
     //se adauga pe stoc o unitate de produs
-
     @Override
     public int adaugareStoc() {
-        return stoc+1;
+        return stoc++;
     }
 
     //se scade de pe stoc o unitate de produs
-
     @Override
     public int eliminareStoc() {
-        return stoc-1;
+        return stoc--;
     }
 
     //returnare stoc
@@ -110,7 +106,6 @@ public class Joc implements IProdus {
     }
 
     //metoda toString construita cu StringBuilder pentru a afisa produsul si informatiile acesteia
-
     @Override
     public String toString(){
         StringBuilder sb=new StringBuilder();

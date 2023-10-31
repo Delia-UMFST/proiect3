@@ -50,7 +50,7 @@ public class ComandaIesita extends Comanda {
         return comenziOutCounter;
     }
 
-    //returneaza un String creat cu StringBuilder
+    //returneaza un String creat cu StringBuilder pentru a fi folosit in JList
     // informatiile pe care le contine Stringul sun:idComanda,furnizor,pretComanda
     public String toString(){
         StringBuilder sb=new StringBuilder();

@@ -32,16 +32,17 @@ public class ItemComanda {
         return cantitate;
     }
 
+    //seteaza cantitate
     public void setCantitate(int cantitate) {
         if(cantitate>0) {
             this.cantitate = cantitate;
         }
     }
-    //creste cantitatea produsului
+    //creste cantitatea produsului cu 1
     public void incrCantitate(){
         ++cantitate;
     }
-    //scade cantitatea produsului
+    //scade cantitatea produsului cu 1
     public void decrCantitate(){
         --cantitate;
     }
@@ -57,7 +58,7 @@ public class ItemComanda {
     }
 
 
-    //returneaza un String creat cu StringBuilder
+    //returneaza un String creat cu StringBuilder pentru a fi folosit in JList
     //se returneaza informatiile unui produs: SKU, nume, cantitate, pretItem
     @Override
     public String toString() {
