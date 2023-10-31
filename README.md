@@ -59,6 +59,8 @@ Clasa PretProdus gestioneaza informatiile legate de preturile produselor, de exe
 ### Pachet exceptii
 <h4 align="center">Pachet exceptii</h4>
 
+https://github.com/Delia-UMFST/proiect3/issues/1#issue-1969983677
+
 <h5 align="left">DepozitException</h5>
 Clasa DepozitException extinde clasa RuntimeException care este o clasa de exceptii verificate in Java.
 <h5 align="left">ComandaException</h5>
