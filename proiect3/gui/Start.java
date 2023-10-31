@@ -25,7 +25,7 @@ public class Start extends JFrame {
 
      setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-
+     //daca se apasa pe butonul de Gestiune, atunci se va afisa fereastra de Gestiune
      accesComenzi.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
@@ -35,6 +35,7 @@ public class Start extends JFrame {
 
          }
      });
+     //daca se apasa pe butonul de Inventar, atunci se va afisa fereastra de Inventar
 
      accesInventar.addActionListener(new ActionListener() {
          @Override

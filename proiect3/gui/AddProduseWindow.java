@@ -20,7 +20,7 @@ public class AddProduseWindow extends JPanel {
     private JList<IProdus> produseList;
     private JLabel produseLB;
     private DefaultListModel<IProdus> produseListModel = new DefaultListModel<>();
-
+    //clasa care are ca si parametru lista produseDepozit si obiectul comanda de tip comanda
     public AddProduseWindow(ArrayList<IProdus> produseDepozit, Comanda comanda){
 
         add(addProdusePanel);
@@ -28,21 +28,23 @@ public class AddProduseWindow extends JPanel {
         produseList.setModel(produseListModel);
         produseList.setCellRenderer(new DefaultListCellRenderer());
         produseList.setVisible(true);
-
+        //se trece prin lista de produse si se adauga la lista produseListModel
         for (IProdus produs : produseDepozit) {
             produseListModel.addElement(produs);
         }
 
+        //adaugarea unui item pe stoc
         adaugareBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(null!=produseList.getSelectedValue()) {
-                    if (cantitateTF.getText().isEmpty()) {
-                        try {
+                    if (cantitateTF.getText().isEmpty()) {//daca TextField-ul este empty
+                        try {//se incearca adaugarea unei singure bucati din produsul selectat cu acel SKU
                             comanda.addItem(new ItemComanda(produseList.getSelectedValue()));
                             Logger.getInstance().log("Adaugare produs SKU:"+produseList.getSelectedValue().getSKU()
                                     +"la comanda "+comanda.getIdComanda()+" (1BUC)");
                         }catch (ProdusDuplicatException ex){
+                            // exceptie, afiseaza mesaj de eroare in caz de produs duplicat
                             Logger.getInstance().log("ProdusDuplicatException la adaugare produs: comanda "
                                     +comanda.getIdComanda()+", produs "+produseList.getSelectedValue().getSKU());
                             JOptionPane.showMessageDialog(AddProduseWindow.this,ex.getMessage());
@@ -51,6 +53,7 @@ public class AddProduseWindow extends JPanel {
                         int cantitate = 0;
                         boolean cantitateValida=false;
                         try {
+                            //citeste cantitatea si daca cantitatea are formatul corespunzator e valid si se afiseaza mesaj
                             cantitate = Integer.parseInt(cantitateTF.getText());
                             cantitateValida=true;
                         } catch (NumberFormatException ex) {
@@ -60,11 +63,13 @@ public class AddProduseWindow extends JPanel {
                                     "Cantitate invalida: "+cantitateTF.getText());
                         }
                         if (cantitateValida){
+                            //daca cantitatea introduse este valida se adauga acel produs in cantitatea corespunzatoare
                             try {
                                 comanda.addItem(new ItemComanda(produseList.getSelectedValue(), cantitate));
                                 Logger.getInstance().log("Adaugare produs SKU:"+produseList.getSelectedValue().getSKU()
                                         +"la comanda "+comanda.getIdComanda()+" ("+cantitateTF.getText()+"BUC)");
                             }catch (ProdusDuplicatException ex){
+                                //daca produsul deja exista atunci se va afisa exceptia pentru produs duplicat
                                 Logger.getInstance().log("ProdusDuplicatException la adaugare produs: comanda "
                                         +comanda.getIdComanda()+", produs "+produseList.getSelectedValue().getSKU());
                                 JOptionPane.showMessageDialog(AddProduseWindow.this,ex.getMessage());

@@ -12,7 +12,7 @@ public interface IProdus {
     public void setNume(String nume);//setare nume
     public String getSKU();//returnare SKU
     public void setSKU(String SKU);//setare SKU
-    public void aplicaDiscount(double discount);//calculare discount
+    public boolean aplicaDiscount(double discount);//calculare discount
     public void crestePret(double crestePretCuProcent);//crestere pretul unui produs
     public double getPretRaft();//returnare pret de raft al unui produs
     public double getPretIntrare();//returnare pret de intrare al unui produs

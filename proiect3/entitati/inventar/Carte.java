@@ -7,6 +7,7 @@ public class Carte implements IProdus {
     public String nume;
     public String SKU;
     private PretProdus pret;
+    public boolean discountAcceptabil=true;
 
     //constructor care are ca si lista de parametriiL nume,stoc, SKU,pretintrare
     public Carte(String nume, int stoc, String SKU, double pretIntrare) {
@@ -32,12 +33,20 @@ public class Carte implements IProdus {
     //calculare discount al unui produs, utilizatorul introduce discount-ul,
     //iar din pretul de raft se va scade acel procent
     @Override
-    public void aplicaDiscount(double discount) {
+    public boolean aplicaDiscount(double discount) {
         double pretCuDiscount;
+        double pretIntrareCuTva;
         pretCuDiscount=pret.getPretRaft();
+        pretIntrareCuTva=pret.getPretIntrare()+pret.getValoareTVA();
         pretCuDiscount=pretCuDiscount-(pretCuDiscount/100)*discount;
-        pret.setPretRaft(pretCuDiscount);
-
+        if(pretCuDiscount<=pretIntrareCuTva){
+            discountAcceptabil=false;
+        }
+        else {
+            pret.setPretRaft(pretCuDiscount);
+            discountAcceptabil=true;
+        }
+        return discountAcceptabil;
     }
 
     //calculare pret nou al unui produs, utilizatorul introduce
@@ -104,7 +113,7 @@ public class Carte implements IProdus {
     public String toString(){
         StringBuilder sb=new StringBuilder();
         sb.append("<html><pre>");
-        sb.append(String.format("%s \t  %s \t %s \t %.2f",nume,SKU,stoc,pret.getPretRaft()));
+        sb.append(String.format("%-30.30s %-6.6s %-6.6s %.2f",nume,SKU,stoc,pret.getPretRaft()));
         sb.append("Lei");
         sb.append("</pre></html>");
         return  sb.toString();

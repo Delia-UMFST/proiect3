@@ -59,7 +59,7 @@ public class GestiuneComenzi extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800,600);
         setLocationRelativeTo(null);
-
+        // se adauga comenzile intrate si iesite in listele comIntrate si comIesite
         for(Comanda com: comenziDepozit){
             if(com instanceof ComandaIntrata){
                 comIntrate.addElement((ComandaIntrata) com);
@@ -68,7 +68,7 @@ public class GestiuneComenzi extends JFrame{
                 comIesite.addElement((ComandaIesita) com);
             }
         }
-
+        //daca comenziDepozit este gol, se va initializa lista comIntrate si comIesite
         if(comenziDepozit.isEmpty()) {
             DepozitUtils.initComIntrate(comIntrate);
             for(Object comIn: Arrays.asList(comIntrate.toArray())){
@@ -90,22 +90,23 @@ public class GestiuneComenzi extends JFrame{
 
 
         clientFurnizorPanel.setVisible(false);
-
+        //la apasarea butonului se vor afisa detalii despre comenzi
         detaliiComBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(null!=comIntrList.getSelectedValue()){
-                    JOptionPane.showMessageDialog(GestiuneComenzi.this,
+                if(null!=comIntrList.getSelectedValue()){//daca un rand a fost selectat din comIntrList
+                    JOptionPane.showMessageDialog(GestiuneComenzi.this,//se afiseaza informatiile
                             comIntrList.getSelectedValue().infoComanda());
-                } else if (null!=comIesList.getSelectedValue()) {
-                    JOptionPane.showMessageDialog(GestiuneComenzi.this,
-                            comIesList.getSelectedValue().infoComanda());
-                }else {
+                } else if (null!=comIesList.getSelectedValue()) {//daca un rand nu a fost selectat din comIntrList
+                    JOptionPane.showMessageDialog(GestiuneComenzi.this,//atunci a fost selectat comIesList
+                            comIesList.getSelectedValue().infoComanda());//se afiseaza informatiile din comIesList
+                }else {//daca nu este selectat nimic, se afiseaza mesaj utilizatorului
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
                             "Selectati o comanda");
                 }
             }
         });
+
         comIntrList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -118,29 +119,30 @@ public class GestiuneComenzi extends JFrame{
                 comIntrList.clearSelection();
             }
         });
+        //buton pentru stergerea comenzii
         stergereComBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(null!=comIntrList.getSelectedValue()){
+                if(null!=comIntrList.getSelectedValue()){//daca este selectat
                     Logger.getInstance().log("Stergere comanda "+comIntrList.getSelectedValue().getIdComanda());
-                    comenziDepozit.remove(comIntrList.getSelectedValue());
-                    comIntrate.remove(comIntrList.getSelectedIndex());
-                } else if (null!=comIesList.getSelectedValue()) {
+                    comenziDepozit.remove(comIntrList.getSelectedValue());//comanda se va sterge din lista
+                    comIntrate.remove(comIntrList.getSelectedIndex());//se va sterge si indexul care ii apartine
+                } else if (null!=comIesList.getSelectedValue()) {//daca este selectat
                     Logger.getInstance().log("Stergere comanda "+comIesList.getSelectedValue().getIdComanda());
-                    comenziDepozit.remove(comIesList.getSelectedValue());
-                    comIesite.remove(comIesList.getSelectedIndex());
+                    comenziDepozit.remove(comIesList.getSelectedValue());//comanda se va sterge din lista
+                    comIesite.remove(comIesList.getSelectedIndex());//se va sterge si indexul care ii apartine
                 }else {
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
-                            "Selectati o comanda");
+                            "Selectati o comanda");//daca nicio comanda nu este selectata, se va afisa mesajul
                 }
             }
         });
-
+        //la apasarea butonului pentru adaugarea produs la comanda
         addProduseBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(null!=comIntrList.getSelectedValue()){
-
+                if(null!=comIntrList.getSelectedValue()){//daca lista de comenzi intrate este selectata
+                    //se adauga produsul selectat la comanda
                     JDialog modalAddProduseDialog= new JDialog(GestiuneComenzi.this,
                             "Adaugare Produse Comanda "+comIntrList.getSelectedValue().getIdComanda(),true);
                     modalAddProduseDialog.setContentPane(new AddProduseWindow(produseDepozit,comIntrList.getSelectedValue()));
@@ -150,7 +152,8 @@ public class GestiuneComenzi extends JFrame{
 
                     //modalAddProduseDialog.add(new AddProduseWindow(comIntrList.getSelectedValue()));
                     //new AddProduseWindow(comIntrList.getSelectedValue());
-                } else if (null!=comIesList.getSelectedValue()) {
+                } else if (null!=comIesList.getSelectedValue()) {//daca lista de comenzi intrate este selectata
+                    //se adauga produsul selectat la comanda
                     JDialog modalAddProduseDialog= new JDialog(GestiuneComenzi.this,
                             "Adaugare Produse Comanda "+comIesList.getSelectedValue().getIdComanda(),true);
                     modalAddProduseDialog.setContentPane(new AddProduseWindow(produseDepozit,comIesList.getSelectedValue()));
@@ -158,16 +161,19 @@ public class GestiuneComenzi extends JFrame{
                     modalAddProduseDialog.setLocationRelativeTo(GestiuneComenzi.this);
                     modalAddProduseDialog.setVisible(true);
                     //new AddProduseWindow(comIesList.getSelectedValue());
-                }else {
+                }else {//daca nici o comanda nu este selectata, se afiseaza mesaj utilizatorului
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
                             "Selectati o comanda");
                 }
             }
         });
+
+        //daca se apasa pe butonul de stergere de produs din comenzi
         stergereProduseBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(null!=comIntrList.getSelectedValue()){
+                    //se afiseaza mesaj de stergere produs selectat din comenzile intrate
                     JDialog modalStergereProduseDialog= new JDialog(GestiuneComenzi.this,
                             "Stergere Produse Comanda "+comIntrList.getSelectedValue().getIdComanda(),true);
                     modalStergereProduseDialog.setContentPane(new StergereProduseWindow(comIntrList.getSelectedValue()));
@@ -176,6 +182,7 @@ public class GestiuneComenzi extends JFrame{
                     modalStergereProduseDialog.setVisible(true);
                     //new StergereProduseWindow(comIntrList.getSelectedValue());
                 } else if (null!=comIesList.getSelectedValue()) {
+                    //se afiseaza mesaj de stergere produs selectat din comenzile iesite
                     JDialog modalStergereProduseDialog= new JDialog(GestiuneComenzi.this,
                             "Stergere Produse Comanda "+comIesList.getSelectedValue().getIdComanda(),true);
                     modalStergereProduseDialog.setContentPane(new StergereProduseWindow(comIesList.getSelectedValue()));
@@ -184,11 +191,13 @@ public class GestiuneComenzi extends JFrame{
                     modalStergereProduseDialog.setVisible(true);
                     //new StergereProduseWindow(comIesList.getSelectedValue());
                 }else {
+                    //daca nici o comanda nu este selectata, se afiseaza mesaj utilizatorului
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
                             "Selectati o comanda");
                 }
             }
         });
+        //la apasarea butonului de back se va afisa fereastra de start
         backButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -213,29 +222,32 @@ public class GestiuneComenzi extends JFrame{
                 clientFurnizorPanel.setVisible(true);
             }
         });
+        //buton pentru crearea comenzii
         creareComBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!comIntrRB.isSelected() && !comIesRB.isSelected()){
+                if(!comIntrRB.isSelected() && !comIesRB.isSelected()){//daca nu este selectat ce tip de comanda este
+                    //se afiseaza mesaj pentru utilizator
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
                             "Selectati tipul comenzii");
                 }
                 else if (clientFurnizorTF.getText().isEmpty()) {
+                    //daca campul clientFurnizorTF este gol se afiseaza mesaj utilizatorului
                     JOptionPane.showMessageDialog(GestiuneComenzi.this,
                             "Introduceti "+clientFurnizorLB.getText()+"ul");
                 }
-                else {
-                    if (comIntrRB.isSelected()){
+                else {//daca este selectata comIntrRB
+                    if (comIntrRB.isSelected()){//se creeaza acel tip de comanda
                         ComandaIntrata com = new ComandaIntrata(clientFurnizorTF.getText());
                         Logger.getInstance().log("Creare comanda "+com.getIdComanda());
                         comIntrate.addElement(com);
-                        comenziDepozit.add(com);
-                    }
-                    else if (comIesRB.isSelected()) {
+                        comenziDepozit.add(com);//se adauga comanda la lista
+                    }//daca este selectata comIesRB
+                    else if (comIesRB.isSelected()) {//se creeaza acel tip de comanda
                         ComandaIesita com = new ComandaIesita(clientFurnizorTF.getText());
                         Logger.getInstance().log("Creare comanda "+com.getIdComanda());
                         comIesite.addElement(com);
-                        comenziDepozit.add(com);
+                        comenziDepozit.add(com);//se adauga comanda la lista
                     }
                 }
             }

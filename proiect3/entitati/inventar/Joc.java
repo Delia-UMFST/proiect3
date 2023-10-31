@@ -38,11 +38,13 @@ public class Joc implements IProdus {
     //calculare discount al unui produs, utilizatorul introduce discount-ul,
     //iar din pretul de raft se va scade acel procent
     @Override
-    public void aplicaDiscount(double discount) {
+    public boolean aplicaDiscount(double discount) {
         double pretCuDiscount;
         pretCuDiscount=pret.getPretRaft();
         pretCuDiscount=pretCuDiscount-(pretCuDiscount/100)*discount;
-        pret.setPretRaft(pretCuDiscount);    }
+        pret.setPretRaft(pretCuDiscount);
+        return false;
+    }
 
     //calculare pret nou al unui produs, utilizatorul introduce
     // cu cat procent ar dori sa creasca,
@@ -113,7 +115,7 @@ public class Joc implements IProdus {
     public String toString(){
         StringBuilder sb=new StringBuilder();
         sb.append("<html><pre>");
-        sb.append(String.format("%s \t  %s \t %s \t %.2f",nume,SKU,stoc,pret.getPretRaft()));
+        sb.append(String.format("%-30.30s %-6.6s %-6.6s %.2f",nume,SKU,stoc,pret.getPretRaft()));
         sb.append("Lei");
         sb.append("</pre></html>");
         return  sb.toString();
